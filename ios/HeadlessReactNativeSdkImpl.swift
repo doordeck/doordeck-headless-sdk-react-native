@@ -153,10 +153,10 @@ public class HeadlessReactNativeSdkImpl: NSObject {
   }
 
   private func setKeyPairIfNeeded() {
-    guard doordeckSdk.contextManager().getKeyPair() == nil else { return }
-
-    let newKeyPair = doordeckSdk.crypto().generateKeyPair()
-    doordeckSdk.contextManager().setKeyPair(publicKey: newKeyPair.public_, privateKey: newKeyPair.private_)
+    if (!doordeckSdk.contextManager().isKeyPairValid()) {
+      let newKeyPair = doordeckSdk.crypto().generateKeyPair()
+      doordeckSdk.contextManager().setKeyPair(publicKey: newKeyPair.public_, privateKey: newKeyPair.private_)
+    }
   }
 
   private func respondNeedsVerification(
