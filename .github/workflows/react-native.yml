@@ -48,7 +48,6 @@ jobs:
 
       - name: Check turborepo cache for Android
         run: |
-          cd react-native
           TURBO_CACHE_STATUS=$(node -p "($(yarn turbo run build:android --cache-dir="${{ env.TURBO_CACHE_DIR }}" --dry=json)).tasks.find(t => t.task === 'build:android').cache.status")
 
           if [[ $TURBO_CACHE_STATUS == "HIT" ]]; then
@@ -85,7 +84,6 @@ jobs:
         env:
           JAVA_OPTS: "-XX:MaxHeapSize=6g"
         run: |
-          cd react-native
           yarn turbo run build:android --cache-dir="${{ env.TURBO_CACHE_DIR }}"
 
 
@@ -112,7 +110,6 @@ jobs:
 #
 #      - name: Check turborepo cache for iOS
 #        run: |
-#          cd react-native
 #          TURBO_CACHE_STATUS=$(node -p "($(yarn turbo run build:ios --cache-dir="${{ env.TURBO_CACHE_DIR }}" --dry=json)).tasks.find(t => t.task === 'build:ios').cache.status")
 #
 #          if [[ $TURBO_CACHE_STATUS == "HIT" ]]; then
@@ -125,7 +122,7 @@ jobs:
 #        uses: actions/cache/restore@v4
 #        with:
 #          path: |
-#            ./react-native/**/ios/Pods
+#            ./**/ios/Pods
 #          key: ${{ runner.os }}-cocoapods-${{ hashFiles('example/ios/Podfile.lock') }}
 #          restore-keys: |
 #            ${{ runner.os }}-cocoapods-
@@ -133,7 +130,6 @@ jobs:
 #      - name: Install cocoapods
 #        if: env.turbo_cache_hit != 1 && steps.cocoapods-cache.outputs.cache-hit != 'true'
 #        run: |
-#          cd react-native
 #          cd example/ios
 #          pod install
 #        env:
@@ -144,12 +140,11 @@ jobs:
 #        uses: actions/cache/save@v4
 #        with:
 #          path: |
-#            ./react-native/**/ios/Pods
+#            ./**/ios/Pods
 #          key: ${{ steps.cocoapods-cache.outputs.cache-key }}
 #
 #      - name: Build example for iOS
 #        run: |
-#          cd react-native
 #          yarn turbo run build:ios --cache-dir="${{ env.TURBO_CACHE_DIR }}"
 
 #  publish-npm:
@@ -163,7 +158,6 @@ jobs:
 #
 #      - name: Update versions everywhere
 #        run: |
-#          cd react-native
 #          ## package.json
 #          jq --arg version "$DOORDECK_SDK_VERSION" '.version = $version' package.json > tmp.json && mv tmp.json package.json
 #
@@ -184,12 +178,10 @@ jobs:
 #
 #      - name: Build package
 #        run: |
-#          cd react-native
 #          yarn prepare
 #
 #      - name: Publish to npm
 #        env:
 #          NODE_AUTH_TOKEN: ${{ secrets.NPM_PUBLISHING_TOKEN }}
 #        run: |
-#          cd react-native
 #          npm publish --access public
