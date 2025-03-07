@@ -87,99 +87,99 @@ jobs:
           yarn turbo run build:android --cache-dir="${{ env.TURBO_CACHE_DIR }}"
 
 
-#  build-ios:
-#    needs: release-tag
-#    runs-on: macos-latest
-#    env:
-#      DOORDECK_SDK_VERSION: ${{ needs.release-tag.outputs.latest-tag }}
-#      TURBO_CACHE_DIR: .turbo/ios
-#    steps:
-#      - name: Checkout
-#        uses: actions/checkout@v4
-#
-#      - name: Setup
-#        uses: ./.github/actions/react-native-setup
-#
-#      - name: Cache turborepo for iOS
-#        uses: actions/cache@v4
-#        with:
-#          path: ${{ env.TURBO_CACHE_DIR }}
-#          key: ${{ runner.os }}-turborepo-ios-${{ hashFiles('yarn.lock') }}
-#          restore-keys: |
-#            ${{ runner.os }}-turborepo-ios-
-#
-#      - name: Check turborepo cache for iOS
-#        run: |
-#          TURBO_CACHE_STATUS=$(node -p "($(yarn turbo run build:ios --cache-dir="${{ env.TURBO_CACHE_DIR }}" --dry=json)).tasks.find(t => t.task === 'build:ios').cache.status")
-#
-#          if [[ $TURBO_CACHE_STATUS == "HIT" ]]; then
-#            echo "turbo_cache_hit=1" >> $GITHUB_ENV
-#          fi
-#
-#      - name: Restore cocoapods
-#        if: env.turbo_cache_hit != 1
-#        id: cocoapods-cache
-#        uses: actions/cache/restore@v4
-#        with:
-#          path: |
-#            ./**/ios/Pods
-#          key: ${{ runner.os }}-cocoapods-${{ hashFiles('example/ios/Podfile.lock') }}
-#          restore-keys: |
-#            ${{ runner.os }}-cocoapods-
-#
-#      - name: Install cocoapods
-#        if: env.turbo_cache_hit != 1 && steps.cocoapods-cache.outputs.cache-hit != 'true'
-#        run: |
-#          cd example/ios
-#          pod install
-#        env:
-#          NO_FLIPPER: 1
-#
-#      - name: Cache cocoapods
-#        if: env.turbo_cache_hit != 1 && steps.cocoapods-cache.outputs.cache-hit != 'true'
-#        uses: actions/cache/save@v4
-#        with:
-#          path: |
-#            ./**/ios/Pods
-#          key: ${{ steps.cocoapods-cache.outputs.cache-key }}
-#
-#      - name: Build example for iOS
-#        run: |
-#          yarn turbo run build:ios --cache-dir="${{ env.TURBO_CACHE_DIR }}"
+  build-ios:
+    needs: release-tag
+    runs-on: macos-latest
+    env:
+      DOORDECK_SDK_VERSION: ${{ needs.release-tag.outputs.latest-tag }}
+      TURBO_CACHE_DIR: .turbo/ios
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
 
-#  publish-npm:
-#    needs: [release-tag, build-android, build-ios]
-#    env:
-#      DOORDECK_SDK_VERSION: ${{ needs.release-tag.outputs.latest-tag }}
-#    runs-on: ubuntu-latest
-#    steps:
-#      - name: Checkout
-#        uses: actions/checkout@v4
-#
-#      - name: Update versions everywhere
-#        run: |
-#          ## package.json
-#          jq --arg version "$DOORDECK_SDK_VERSION" '.version = $version' package.json > tmp.json && mv tmp.json package.json
-#
-#          ## podspec
-#          sed -i "s/\(doordeck_sdk_version *= *\).*/\1'${DOORDECK_SDK_VERSION}'/" HeadlessReactNativeSdk.podspec
-#
-#          ## build.gradle
-#          sed -i 's/^def doordeckSdkVersion = .*$/def doordeckSdkVersion = "'"${DOORDECK_SDK_VERSION}"'"/' android/build.gradle
-#
-#          cat HeadlessReactNativeSdk.podspec
-#          echo ""
-#          cat android/build.gradle
-#          echo ""
-#          cat package.json
-#
-#      - name: Setup
-#        uses: ./.github/actions/react-native-setup
-#
-#      - name: Build package
-#        run: |
-#          yarn prepare
-#
+      - name: Setup
+        uses: ./.github/actions/react-native-setup
+
+      - name: Cache turborepo for iOS
+        uses: actions/cache@v4
+        with:
+          path: ${{ env.TURBO_CACHE_DIR }}
+          key: ${{ runner.os }}-turborepo-ios-${{ hashFiles('yarn.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-turborepo-ios-
+
+      - name: Check turborepo cache for iOS
+        run: |
+          TURBO_CACHE_STATUS=$(node -p "($(yarn turbo run build:ios --cache-dir="${{ env.TURBO_CACHE_DIR }}" --dry=json)).tasks.find(t => t.task === 'build:ios').cache.status")
+
+          if [[ $TURBO_CACHE_STATUS == "HIT" ]]; then
+            echo "turbo_cache_hit=1" >> $GITHUB_ENV
+          fi
+
+      - name: Restore cocoapods
+        if: env.turbo_cache_hit != 1
+        id: cocoapods-cache
+        uses: actions/cache/restore@v4
+        with:
+          path: |
+            ./**/ios/Pods
+          key: ${{ runner.os }}-cocoapods-${{ hashFiles('example/ios/Podfile.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-cocoapods-
+
+      - name: Install cocoapods
+        if: env.turbo_cache_hit != 1 && steps.cocoapods-cache.outputs.cache-hit != 'true'
+        run: |
+          cd example/ios
+          pod install
+        env:
+          NO_FLIPPER: 1
+
+      - name: Cache cocoapods
+        if: env.turbo_cache_hit != 1 && steps.cocoapods-cache.outputs.cache-hit != 'true'
+        uses: actions/cache/save@v4
+        with:
+          path: |
+            ./**/ios/Pods
+          key: ${{ steps.cocoapods-cache.outputs.cache-key }}
+
+      - name: Build example for iOS
+        run: |
+          yarn turbo run build:ios --cache-dir="${{ env.TURBO_CACHE_DIR }}"
+
+  publish-npm:
+    needs: [release-tag, build-android, build-ios]
+    env:
+      DOORDECK_SDK_VERSION: ${{ needs.release-tag.outputs.latest-tag }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Update versions everywhere
+        run: |
+          ## package.json
+          jq --arg version "$DOORDECK_SDK_VERSION" '.version = $version' package.json > tmp.json && mv tmp.json package.json
+
+          ## podspec
+          sed -i "s/\(doordeck_sdk_version *= *\).*/\1'${DOORDECK_SDK_VERSION}'/" HeadlessReactNativeSdk.podspec
+
+          ## build.gradle
+          sed -i 's/^def doordeckSdkVersion = .*$/def doordeckSdkVersion = "'"${DOORDECK_SDK_VERSION}"'"/' android/build.gradle
+
+          cat HeadlessReactNativeSdk.podspec
+          echo ""
+          cat android/build.gradle
+          echo ""
+          cat package.json
+
+      - name: Setup
+        uses: ./.github/actions/react-native-setup
+
+      - name: Build package
+        run: |
+          yarn prepare
+
 #      - name: Publish to npm
 #        env:
 #          NODE_AUTH_TOKEN: ${{ secrets.NPM_PUBLISHING_TOKEN }}
