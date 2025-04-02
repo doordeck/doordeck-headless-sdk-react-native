@@ -1,33 +1,13 @@
 name: React Native
 on:
-  workflow_dispatch:
+  pull_request:
+    branches:
+      - main
 
 jobs:
-  release-tag:
-    name: Fetch release tag
-    runs-on: ubuntu-latest
-    outputs:
-      latest-tag: ${{ steps.release-tag.outputs.LATEST_TAG }}
-
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-        with:
-          fetch-depth: 0
-
-      - name: Get Latest Release Tag
-        id: release-tag
-        run: |
-          LATEST_TAG_V=$(git ls-remote --tags --refs --sort=-v:refname https://github.com/doordeck/doordeck-headless-sdk.git | awk -F'/' '{print $3}' | sed 's/\^{}//' | sort -V | tail -n1)
-          LATEST_TAG=${LATEST_TAG_V#v}
-          echo "LATEST_TAG=$LATEST_TAG" >> $GITHUB_OUTPUT
-          echo $LATEST_TAG
-
   build-android:
-    needs: release-tag
     runs-on: ubuntu-latest
     env:
-      DOORDECK_SDK_VERSION: ${{ needs.release-tag.outputs.latest-tag }}
       TURBO_CACHE_DIR: .turbo/android
     steps:
       - name: Checkout
@@ -75,10 +55,8 @@ jobs:
 
 
   build-ios:
-    needs: release-tag
     runs-on: macos-latest
     env:
-      DOORDECK_SDK_VERSION: ${{ needs.release-tag.outputs.latest-tag }}
       TURBO_CACHE_DIR: .turbo/ios
     steps:
       - name: Checkout
@@ -133,42 +111,3 @@ jobs:
       - name: Build example for iOS
         run: |
           yarn turbo run build:ios --cache-dir="${{ env.TURBO_CACHE_DIR }}"
-
-  publish-npm:
-    needs: [release-tag, build-android, build-ios]
-    env:
-      DOORDECK_SDK_VERSION: ${{ needs.release-tag.outputs.latest-tag }}
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-
-      - name: Update versions everywhere
-        run: |
-          ## package.json
-          jq --arg version "$DOORDECK_SDK_VERSION" '.version = $version' package.json > tmp.json && mv tmp.json package.json
-
-          ## podspec
-          sed -i "s/\(doordeck_sdk_version *= *\).*/\1'${DOORDECK_SDK_VERSION}'/" HeadlessReactNativeSdk.podspec
-
-          ## build.gradle
-          sed -i 's/^def doordeckSdkVersion = .*$/def doordeckSdkVersion = "'"${DOORDECK_SDK_VERSION}"'"/' android/build.gradle
-
-          cat HeadlessReactNativeSdk.podspec
-          echo ""
-          cat android/build.gradle
-          echo ""
-          cat package.json
-
-      - name: Setup
-        uses: ./.github/actions/react-native-setup
-
-      - name: Build package
-        run: |
-          yarn prepare
-
-      - name: Publish to npm
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_PUBLISHING_TOKEN }}
-        run: |
-          npm publish --access public

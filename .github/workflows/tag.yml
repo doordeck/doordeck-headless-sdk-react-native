@@ -1,0 +1,25 @@
+name: React Native build on tag and publish
+on:
+  push:
+    tags:
+      - 'v*'
+
+jobs:
+  publish-npm:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup
+        uses: ./.github/actions/react-native-setup
+
+      - name: Build package
+        run: |
+          yarn prepare
+
+      - name: Publish to npm
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_PUBLISHING_TOKEN }}
+        run: |
+          npm publish --access public
