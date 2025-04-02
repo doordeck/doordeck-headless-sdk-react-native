@@ -2,7 +2,7 @@ name: React Native build on tag and publish
 on:
   push:
     tags:
-      - 'v*' # This will reference the pub.dev version
+      - 'v*'
 
 jobs:
   publish-npm:
