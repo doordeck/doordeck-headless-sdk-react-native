@@ -106,9 +106,7 @@ public class HeadlessReactNativeSdkImpl: NSObject {
     Task {
       do {
         let sdk = try await self.sdk()
-        guard let response = try await sdk.account().getUserDetails() else {
-          throw HeadlessReactNativeSdkImpl.makeError("Unknown error occurred")
-        }
+        let response = try await sdk.account().getUserDetails()
         let contextManager = sdk.contextManager()
         let tokenAboutToExpire = try await contextManager.isCloudAuthTokenInvalidOrExpired(checkServerInvalidation: false)
         resolver(response.toNativeMap(
