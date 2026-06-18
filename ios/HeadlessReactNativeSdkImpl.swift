@@ -20,9 +20,7 @@ public class HeadlessReactNativeSdkImpl: NSObject {
     if let existing = doordeckSdk {
       return existing
     }
-    guard let initialized = try await KDoordeckFactory().initialize(sdkConfig: SdkConfig.Builder().build()) else {
-      throw HeadlessReactNativeSdkImpl.makeError("Failed to initialize the Doordeck SDK")
-    }
+    let initialized = try await KDoordeckFactory().initialize(sdkConfig: SdkConfig.Builder().build())
     doordeckSdk = initialized
     return initialized
   }
@@ -116,7 +114,7 @@ public class HeadlessReactNativeSdkImpl: NSObject {
         resolver(response.toNativeMap(
           userId: contextManager.getUserId()?.uuidString,
           certificateChainAboutToExpire: contextManager.isCertificateChainInvalidOrExpired(),
-          tokenAboutToExpire: tokenAboutToExpire?.boolValue ?? false
+          tokenAboutToExpire: tokenAboutToExpire.boolValue
         ))
       } catch {
         rejecter("USER_DETAILS_ERROR", error.localizedDescription, error)
@@ -139,9 +137,7 @@ public class HeadlessReactNativeSdkImpl: NSObject {
           throw HeadlessReactNativeSdkImpl.makeError("Invalid tileId: \(tileId)")
         }
         let sdk = try await self.sdk()
-        guard let response = try await sdk.tiles().getLocksBelongingToTile(tileId: tileUuid) else {
-          throw HeadlessReactNativeSdkImpl.makeError("Unknown error occurred")
-        }
+        let response = try await sdk.tiles().getLocksBelongingToTile(tileId: tileUuid)
         resolver(response.toNativeMap())
       } catch {
         rejecter("LOCKS_ERROR", error.localizedDescription, error)
@@ -194,9 +190,7 @@ public class HeadlessReactNativeSdkImpl: NSObject {
     _ sdk: Doordeck,
     _ resolver: @escaping RCTPromiseResolveBlock
   ) async throws {
-    guard let response = try await sdk.helper().assistedRegisterEphemeralKey(publicKey: nil, privateKey: nil) else {
-      throw HeadlessReactNativeSdkImpl.makeError("Unknown error occurred")
-    }
+    let response = try await sdk.helper().assistedRegisterEphemeralKey(publicKey: nil, privateKey: nil)
     resolver(response.toNativeMap())
   }
 
