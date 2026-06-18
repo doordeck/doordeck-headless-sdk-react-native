@@ -18,8 +18,15 @@ Pod::Spec.new do |s|
   s.private_header_files = "ios/**/*.h"
   s.preserve_paths = "ios/**/*.{h,m,mm,swift}"
 
-  doordeck_sdk_version = '0.86'
-  s.dependency "DoordeckSDK", "~> #{doordeck_sdk_version}"
+  # The native Doordeck SDK is distributed as a Swift Package (a binary xcframework),
+  # not as a CocoaPods pod. Wire it in via React Native's built-in SPM support
+  # (spm_dependency, available on RN >= 0.76). The SPM product/module is "DoordeckSDK",
+  # so `import DoordeckSDK` in the Swift bridge continues to work unchanged.
+  spm_dependency(s,
+    url: 'https://github.com/doordeck/doordeck-headless-sdk-spm.git',
+    requirement: { kind: 'upToNextMajorVersion', minimumVersion: '1.156.0' },
+    products: ['DoordeckSDK']
+  )
 
   # Use install_modules_dependencies helper to install the dependencies if React Native version >=0.71.0.
   # See https://github.com/facebook/react-native/blob/febf6b7f33fdb4904669f99d795eba4c0f95d7bf/scripts/cocoapods/new_architecture.rb#L79.
