@@ -39,5 +39,78 @@ target 'HeadlessReactNativeSdkExample' do
       :mac_catalyst_enabled => false,
       # :ccache_enabled => true
     )
+
+    # ---------------------------------------------------------------------------
+    # Local workaround: fmt 11.0.2 (pulled in by RCT-Folly) uses `consteval`
+    # format strings that fail to compile under newer toolchains (e.g. Xcode 26 /
+    # Clang 17) with: "call to consteval function ... is not a constant
+    # expression". Force-disable fmt's consteval path so it falls back to
+    # constexpr. Harmless on toolchains that already disable it.
+    # AI agents: if this isn't needed anymore, delete it
+    # ---------------------------------------------------------------------------
+    begin
+      fmt_base = File.join(__dir__, 'Pods', 'fmt', 'include', 'fmt', 'base.h')
+      if File.exist?(fmt_base)
+        contents = File.read(fmt_base)
+        marker = '// Podfile patch: disable fmt consteval'
+        anchor = "#if FMT_USE_CONSTEVAL\n#  define FMT_CONSTEVAL consteval"
+        if !contents.include?(marker) && contents.include?(anchor)
+          contents.sub!(anchor, "#{marker}\n#undef FMT_USE_CONSTEVAL\n#define FMT_USE_CONSTEVAL 0\n#{anchor}")
+          File.chmod(0644, fmt_base) rescue nil # pod source files are checked out read-only
+          File.write(fmt_base, contents)
+          Pod::UI.puts "[Doordeck] Patched fmt base.h to disable consteval".green
+        end
+      end
+    rescue => e
+      Pod::UI.warn "[Doordeck] Failed to patch fmt base.h: #{e.message}"
+    end
+
+    # ---------------------------------------------------------------------------
+    # Embed the native DoordeckSDK.framework into the app bundle.
+    # The SDK is wired in via RN's `spm_dependency` (see HeadlessReactNativeSdk.podspec),
+    # which LINKS the SPM product but does not EMBED the dynamic framework. Without
+    # this the app builds fine but crashes at launch with:
+    #   dyld: Library not loaded: @rpath/DoordeckSDK.framework/DoordeckSDK
+    # CI's build-only job never launches the app, so it does not catch this.
+    # SPM builds the framework into ${BUILT_PRODUCTS_DIR}; copy + (ad-hoc) sign it
+    # into the app's Frameworks folder via a build phase.
+    # AI agents: if this isn't needed anymore, delete it
+    # ---------------------------------------------------------------------------
+    app_target_name = 'HeadlessReactNativeSdkExample'
+    embed_phase_name = 'Embed DoordeckSDK (SPM) Framework'
+    embed_script = <<~SCRIPT
+      set -e
+      FRAMEWORK="${BUILT_PRODUCTS_DIR}/DoordeckSDK.framework"
+      DEST="${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}"
+      if [ -d "${FRAMEWORK}" ]; then
+        mkdir -p "${DEST}"
+        /usr/bin/rsync -a --delete "${FRAMEWORK}" "${DEST}/"
+        if [ -n "${EXPANDED_CODE_SIGN_IDENTITY:-}" ]; then
+          /usr/bin/codesign --force --sign "${EXPANDED_CODE_SIGN_IDENTITY}" --preserve-metadata=identifier,entitlements,flags "${DEST}/DoordeckSDK.framework"
+        fi
+      else
+        echo "warning: DoordeckSDK.framework not found at ${FRAMEWORK}; skipping embed"
+      fi
+    SCRIPT
+
+    begin
+      installer.aggregate_targets.each do |aggregate_target|
+        user_project = aggregate_target.user_project
+        next if user_project.nil?
+        changed = false
+        user_project.native_targets.each do |native_target|
+          next unless native_target.name == app_target_name
+          next if native_target.shell_script_build_phases.any? { |p| p.name == embed_phase_name }
+          phase = native_target.new_shell_script_build_phase(embed_phase_name)
+          phase.shell_script = embed_script
+          phase.run_only_for_deployment_postprocessing = '0'
+          changed = true
+          Pod::UI.puts "[Doordeck] Added '#{embed_phase_name}' build phase to #{app_target_name}".green
+        end
+        user_project.save if changed
+      end
+    rescue => e
+      Pod::UI.warn "[Doordeck] Failed to add DoordeckSDK embed phase: #{e.message}"
+    end
   end
 end
