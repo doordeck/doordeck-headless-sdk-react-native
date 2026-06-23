@@ -59,6 +59,11 @@ target 'HeadlessReactNativeSdkExample' do
           File.chmod(0644, fmt_base) rescue nil # pod source files are checked out read-only
           File.write(fmt_base, contents)
           Pod::UI.puts "[Doordeck] Patched fmt base.h to disable consteval".green
+        elsif !contents.include?(marker)
+          # Anchor not found and patch not already applied: fmt likely reformatted
+          # this block (version bump). The consteval workaround is now silently a
+          # no-op, which will reintroduce the compile failure — warn loudly.
+          Pod::UI.warn "[Doordeck] fmt base.h consteval anchor not found — workaround may be stale (fmt version bumped?)"
         end
       end
     rescue => e
@@ -100,17 +105,25 @@ target 'HeadlessReactNativeSdkExample' do
         changed = false
         user_project.native_targets.each do |native_target|
           next unless native_target.name == app_target_name
-          next if native_target.shell_script_build_phases.any? { |p| p.name == embed_phase_name }
-          phase = native_target.new_shell_script_build_phase(embed_phase_name)
-          phase.shell_script = embed_script
-          phase.run_only_for_deployment_postprocessing = '0'
-          changed = true
-          Pod::UI.puts "[Doordeck] Added '#{embed_phase_name}' build phase to #{app_target_name}".green
+          # Own the phase content rather than skip-if-present: the same phase is
+          # also committed in project.pbxproj, so a name-only check would let the
+          # two copies drift undetected. Reconcile the script every install.
+          phase = native_target.shell_script_build_phases.find { |p| p.name == embed_phase_name } ||
+                  native_target.new_shell_script_build_phase(embed_phase_name)
+          if phase.shell_script != embed_script || phase.run_only_for_deployment_postprocessing != '0'
+            phase.shell_script = embed_script
+            phase.run_only_for_deployment_postprocessing = '0'
+            changed = true
+            Pod::UI.puts "[Doordeck] Synced '#{embed_phase_name}' build phase on #{app_target_name}".green
+          end
         end
         user_project.save if changed
       end
     rescue => e
-      Pod::UI.warn "[Doordeck] Failed to add DoordeckSDK embed phase: #{e.message}"
+      # A missing embed phase reproduces the dyld "Library not loaded" crash at
+      # launch. Fail at install time instead of deferring to a confusing runtime
+      # crash later.
+      raise Pod::Informative, "[Doordeck] Failed to add DoordeckSDK embed phase: #{e.message}"
     end
   end
 end
