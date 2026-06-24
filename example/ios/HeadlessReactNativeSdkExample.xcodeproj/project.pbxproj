@@ -112,6 +112,7 @@
 				00DD1BFF1BD5951E006B06BC /* Bundle React Native code and images */,
 				E5C6AC379643B5B6EB6E5729 /* [CP] Embed Pods Frameworks */,
 				4E24CCD1ED1F5731E35AE6B6 /* [CP] Copy Pods Resources */,
+				EB2847733601DD483CE825D0 /* Embed DoordeckSDK (SPM) Framework */,
 			);
 			buildRules = (
 			);
@@ -238,6 +239,24 @@
 			shellPath = /bin/sh;
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-HeadlessReactNativeSdkExample/Pods-HeadlessReactNativeSdkExample-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
+		};
+		EB2847733601DD483CE825D0 /* Embed DoordeckSDK (SPM) Framework */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = "Embed DoordeckSDK (SPM) Framework";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "set -e\nFRAMEWORK=\"${BUILT_PRODUCTS_DIR}/DoordeckSDK.framework\"\nDEST=\"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}\"\nif [ -d \"${FRAMEWORK}\" ]; then\n  mkdir -p \"${DEST}\"\n  /usr/bin/rsync -a --delete \"${FRAMEWORK}\" \"${DEST}/\"\n  if [ -n \"${EXPANDED_CODE_SIGN_IDENTITY:-}\" ]; then\n    /usr/bin/codesign --force --sign \"${EXPANDED_CODE_SIGN_IDENTITY}\" --preserve-metadata=identifier,entitlements,flags \"${DEST}/DoordeckSDK.framework\"\n  fi\nelse\n  echo \"warning: DoordeckSDK.framework not found at ${FRAMEWORK}; skipping embed\"\nfi\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
