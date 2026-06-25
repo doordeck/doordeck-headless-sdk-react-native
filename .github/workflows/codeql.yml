@@ -90,7 +90,7 @@ jobs:
         uses: ./.github/actions/react-native-setup
 
       - name: Install JDK
-        uses: actions/setup-java@v4
+        uses: actions/setup-java@v5
         with:
           distribution: 'corretto'
           java-version: '17'
