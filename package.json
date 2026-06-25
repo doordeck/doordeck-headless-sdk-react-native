@@ -90,7 +90,8 @@
     "lodash": "^4.18.0",
     "on-headers": "^1.1.0",
     "tmp": "^0.2.6",
-    "@octokit/plugin-paginate-rest": "^11.4.1"
+    "@octokit/plugin-paginate-rest": "^11.4.1",
+    "fast-xml-parser": "^5.7.0"
   },
   "peerDependencies": {
     "react": "*",
