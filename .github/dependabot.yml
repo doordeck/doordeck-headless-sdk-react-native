@@ -1,0 +1,66 @@
+# .github/dependabot.yml
+version: 2
+
+updates:
+  # JavaScript / TypeScript (root yarn workspace — covers the SDK and the example app)
+  - package-ecosystem: "npm"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+      day: "monday"
+      time: "09:30"
+      timezone: "Europe/London"
+    open-pull-requests-limit: 10
+    reviewers:
+      - "team:mobile-developers"
+    groups:
+      npm-patch:
+        patterns: ["*"]
+        update-types: ["patch"]
+
+  # Ruby gems used by the example app's iOS CocoaPods tooling
+  - package-ecosystem: "bundler"
+    directory: "/example"
+    schedule:
+      interval: "weekly"
+      day: "monday"
+      time: "10:30"
+      timezone: "Europe/London"
+    open-pull-requests-limit: 10
+    reviewers:
+      - "team:mobile-developers"
+    groups:
+      bundler-patch:
+        patterns: ["*"]
+        update-types: ["patch"]
+
+  # Android native dependencies (resolved from mavenCentral / google)
+  - package-ecosystem: "gradle"
+    directory: "/android"
+    schedule:
+      interval: "weekly"
+      day: "monday"
+      time: "13:00"
+      timezone: "Europe/London"
+    open-pull-requests-limit: 10
+    reviewers:
+      - "team:mobile-developers"
+    groups:
+      gradle-patch:
+        patterns: ["*"]
+        update-types: ["patch"]
+
+  # GitHub Actions used by the workflows
+  - package-ecosystem: "github-actions"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+      day: "monday"
+      time: "08:00"
+      timezone: "Europe/London"
+    reviewers:
+      - "team:mobile-developers"
+    groups:
+      actions-all:
+        patterns: ["*"]
+        update-types: ["major", "minor", "patch"]
