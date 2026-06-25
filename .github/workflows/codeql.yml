@@ -1,0 +1,78 @@
+name: "CodeQL (Advanced Security)"
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+  schedule:
+    - cron: '0 3 * * 1'
+
+permissions:
+  actions: read
+  contents: read
+  security-events: write
+
+jobs:
+  # Interpreted / no-build languages — scanned directly from source.
+  analyze:
+    name: "Analyze (${{ matrix.language }})"
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        language: [ actions, javascript-typescript, ruby, java-kotlin ]
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v7
+
+      - name: Initialize CodeQL
+        uses: github/codeql-action/init@v4
+        with:
+          languages: ${{ matrix.language }}
+          build-mode: none
+          queries: +security-extended
+
+      - name: Perform CodeQL Analysis
+        uses: github/codeql-action/analyze@v4
+        with:
+          category: "/language:${{ matrix.language }}"
+
+  # Swift is a compiled language with no "none" build mode, so CodeQL must
+  # observe a real build. We build the example app (the only thing that
+  # compiles ios/*.swift) under CodeQL's tracer via build-mode: manual.
+  analyze-swift:
+    name: "Analyze (swift)"
+    runs-on: macos-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v7
+
+      - name: Setup
+        uses: ./.github/actions/react-native-setup
+
+      - name: Install CocoaPods
+        run: |
+          cd example/ios
+          pod install --repo-update
+        env:
+          NO_FLIPPER: 1
+
+      - name: Initialize CodeQL
+        uses: github/codeql-action/init@v4
+        with:
+          languages: swift
+          build-mode: manual
+          queries: +security-extended
+
+      # Run the build directly (not via turbo) so it is never cache-skipped —
+      # CodeQL needs the Swift compiler to actually run to extract the code.
+      - name: Build iOS example (for CodeQL extraction)
+        run: |
+          cd example
+          yarn build:ios
+
+      - name: Perform CodeQL Analysis
+        uses: github/codeql-action/analyze@v4
+        with:
+          category: "/language:swift"
