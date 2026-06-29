@@ -16,6 +16,18 @@ buildscript {
         classpath("com.facebook.react:react-native-gradle-plugin")
         classpath("org.jetbrains.kotlin:kotlin-gradle-plugin")
     }
+
+    // React Native 0.77 pins Kotlin to 2.0.21 via its bundled version catalog,
+    // but doordeck-sdk 0.209.0 ships Kotlin 2.4 metadata and needs a >= 2.4
+    // compiler. Force the Kotlin Gradle plugin to kotlinVersion so it can
+    // consume the SDK.
+    configurations.classpath {
+        resolutionStrategy.eachDependency {
+            if (requested.group == "org.jetbrains.kotlin") {
+                useVersion(kotlinVersion)
+            }
+        }
+    }
 }
 
 apply plugin: "com.facebook.react.rootproject"
