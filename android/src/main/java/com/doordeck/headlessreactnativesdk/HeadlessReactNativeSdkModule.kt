@@ -10,7 +10,9 @@ import com.facebook.react.bridge.Arguments
 import com.facebook.react.bridge.Promise
 import com.facebook.react.bridge.ReactApplicationContext
 import com.facebook.react.module.annotations.ReactModule
+import android.util.Base64
 import java.security.KeyFactory
+import java.util.UUID
 import java.security.Signature
 import java.security.spec.PKCS8EncodedKeySpec
 import kotlin.time.Duration.Companion.days
@@ -80,14 +82,18 @@ class HeadlessReactNativeSdkModule(
    */
   override fun getUserDetails(promise: Promise) {
     doordeckSdk.account().getUserDetailsAsync()
-      .thenApply { response ->
-        promise.resolve(response.toNativeMap(
-          userId = doordeckSdk.contextManager().getUserId(),
-          certificateChainAboutToExpire = doordeckSdk.contextManager().isCertificateChainAboutToExpire(),
-          tokenAboutToExpire = doordeckSdk.contextManager().isCloudAuthTokenAboutToExpire(),
-        ))
+      .thenCompose { response ->
+        // isCloudAuthTokenInvalidOrExpired is now asynchronous; chain it.
+        doordeckSdk.contextManager().isCloudAuthTokenInvalidOrExpiredAsync(false)
+          .thenApply { tokenAboutToExpire ->
+            promise.resolve(response.toNativeMap(
+              userId = doordeckSdk.contextManager().getUserId()?.toString(),
+              certificateChainAboutToExpire = doordeckSdk.contextManager().isCertificateChainInvalidOrExpired(),
+              tokenAboutToExpire = tokenAboutToExpire,
+            ))
+          }
       }
-      .exceptionally {  error ->
+      .exceptionally { error ->
         promise.reject("USER_DETAILS_ERROR", error)
       }
   }
@@ -97,7 +103,7 @@ class HeadlessReactNativeSdkModule(
    */
 
   override fun getLocksBelongingToTile(tileId: String, promise: Promise) {
-    doordeckSdk.tiles().getLocksBelongingToTileAsync(tileId)
+    doordeckSdk.tiles().getLocksBelongingToTileAsync(UUID.fromString(tileId))
       .thenApply { response ->
         promise.resolve(response.toNativeMap())
       }
@@ -110,7 +116,7 @@ class HeadlessReactNativeSdkModule(
     doordeckSdk.lockOperations().unlockAsync(
       LockOperations.UnlockOperation(
         LockOperations.BaseOperation(
-          lockId = lockId,
+          lockId = UUID.fromString(lockId),
         )
       )
     )
@@ -130,10 +136,7 @@ class HeadlessReactNativeSdkModule(
   private fun setKeyPairIfNeeded() {
     if (!doordeckSdk.contextManager().isKeyPairValid()) {
       val newKeyPair = doordeckSdk.crypto().generateKeyPair()
-      doordeckSdk.contextManager().setKeyPair(
-        publicKey = newKeyPair.public,
-        privateKey = newKeyPair.private,
-      )
+      doordeckSdk.contextManager().setKeyPair(newKeyPair)
     }
   }
 
@@ -152,10 +155,10 @@ class HeadlessReactNativeSdkModule(
   }
 
   private fun TileLocksResponse.toNativeMap() = Arguments.createMap().apply {
-    putString("siteId", siteId)
-    putString("tileId", tileId)
+    putString("siteId", siteId.toString())
+    putString("tileId", tileId.toString())
     putArray("deviceIds", Arguments.createArray().apply {
-      deviceIds.forEach { pushString(it) }
+      deviceIds.forEach { pushString(it.toString()) }
     })
   }
 
@@ -167,7 +170,7 @@ class HeadlessReactNativeSdkModule(
     putString("userId", userId)
     putBoolean("certificateChainAboutToExpire", certificateChainAboutToExpire)
     putBoolean("tokenAboutToExpire", tokenAboutToExpire)
-    putString("publicKey", publicKey)
+    putString("publicKey", Base64.encodeToString(publicKey.encoded, Base64.NO_WRAP))
     putString("email", email)
     putString("displayName", displayName)
     putBoolean("emailVerified", emailVerified)

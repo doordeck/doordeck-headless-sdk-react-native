@@ -24,7 +24,7 @@ Pod::Spec.new do |s|
   # so `import DoordeckSDK` in the Swift bridge continues to work unchanged.
   spm_dependency(s,
     url: 'https://github.com/doordeck/doordeck-headless-sdk-spm.git',
-    requirement: { kind: 'upToNextMajorVersion', minimumVersion: '1.156.0' },
+    requirement: { kind: 'exactVersion', version: '1.162.0' },
     products: ['DoordeckSDK']
   )
 

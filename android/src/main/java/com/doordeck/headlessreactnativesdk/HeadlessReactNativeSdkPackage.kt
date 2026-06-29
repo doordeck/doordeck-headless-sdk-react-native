@@ -1,6 +1,5 @@
 package com.doordeck.headlessreactnativesdk
 
-import com.doordeck.multiplatform.sdk.ApplicationContext
 import com.doordeck.multiplatform.sdk.KDoordeckFactory
 import com.doordeck.multiplatform.sdk.config.SdkConfig
 import com.facebook.react.BaseReactPackage
@@ -15,11 +14,12 @@ class HeadlessReactNativeSdkPackage : BaseReactPackage() {
     return if (name == HeadlessReactNativeSdkModule.NAME) {
       HeadlessReactNativeSdkModule(
         reactContext = reactContext,
-        doordeckSdk = KDoordeckFactory.initialize(
-          SdkConfig.Builder()
-            .setApplicationContext(ApplicationContext.apply { set(reactContext.applicationContext)})
-            .build()
-        )
+        // initialize() is now a suspend fun; use the blocking async variant for
+        // one-time module construction. The Android application context is wired
+        // up automatically by the SDK, so it no longer needs to be set here.
+        doordeckSdk = KDoordeckFactory.initializeAsync(
+          SdkConfig.Builder().build()
+        ).get()
       )
     } else {
       null
