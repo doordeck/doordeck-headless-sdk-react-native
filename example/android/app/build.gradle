@@ -78,6 +78,15 @@ android {
     compileSdk rootProject.ext.compileSdkVersion
 
     namespace "doordeck.headlessreactnativesdk.example"
+
+    packagingOptions {
+        resources {
+            // bcprov-jdk18on and jspecify (transitive via the Doordeck SDK) both
+            // ship this multi-release OSGi manifest; drop the duplicate.
+            excludes += ["META-INF/versions/9/OSGI-INF/MANIFEST.MF"]
+        }
+    }
+
     defaultConfig {
         applicationId "doordeck.headlessreactnativesdk.example"
         minSdkVersion rootProject.ext.minSdkVersion
