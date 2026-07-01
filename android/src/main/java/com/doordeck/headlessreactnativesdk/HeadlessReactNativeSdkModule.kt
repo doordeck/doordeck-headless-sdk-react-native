@@ -1,7 +1,6 @@
 package com.doordeck.headlessreactnativesdk
 
 import com.doordeck.multiplatform.sdk.Doordeck
-import com.doordeck.multiplatform.sdk.exceptions.SdkException
 import com.doordeck.multiplatform.sdk.model.data.LockOperations
 import com.doordeck.multiplatform.sdk.model.responses.AssistedRegisterEphemeralKeyResponse
 import com.doordeck.multiplatform.sdk.model.responses.TileLocksResponse
@@ -10,10 +9,8 @@ import com.facebook.react.bridge.Arguments
 import com.facebook.react.bridge.Promise
 import com.facebook.react.bridge.ReactApplicationContext
 import com.facebook.react.module.annotations.ReactModule
-import java.security.KeyFactory
-import java.security.Signature
-import java.security.spec.PKCS8EncodedKeySpec
-import kotlin.time.Duration.Companion.days
+import java.util.Base64
+import java.util.UUID
 
 @ReactModule(name = HeadlessReactNativeSdkModule.NAME)
 class HeadlessReactNativeSdkModule(
@@ -79,15 +76,22 @@ class HeadlessReactNativeSdkModule(
    * User operations
    */
   override fun getUserDetails(promise: Promise) {
+    val contextManager = doordeckSdk.contextManager()
+
     doordeckSdk.account().getUserDetailsAsync()
-      .thenApply { response ->
-        promise.resolve(response.toNativeMap(
-          userId = doordeckSdk.contextManager().getUserId(),
-          certificateChainAboutToExpire = doordeckSdk.contextManager().isCertificateChainAboutToExpire(),
-          tokenAboutToExpire = doordeckSdk.contextManager().isCloudAuthTokenAboutToExpire(),
-        ))
+      .thenCompose { response ->
+        // The cloud-auth-token expiry check is now asynchronous; chain it and
+        // build the response once it resolves.
+        contextManager.isCloudAuthTokenInvalidOrExpiredAsync(false)
+          .thenApply { tokenAboutToExpire ->
+            promise.resolve(response.toNativeMap(
+              userId = contextManager.getUserId()?.toString(),
+              certificateChainAboutToExpire = contextManager.isCertificateChainInvalidOrExpired(),
+              tokenAboutToExpire = tokenAboutToExpire,
+            ))
+          }
       }
-      .exceptionally {  error ->
+      .exceptionally { error ->
         promise.reject("USER_DETAILS_ERROR", error)
       }
   }
@@ -97,7 +101,7 @@ class HeadlessReactNativeSdkModule(
    */
 
   override fun getLocksBelongingToTile(tileId: String, promise: Promise) {
-    doordeckSdk.tiles().getLocksBelongingToTileAsync(tileId)
+    doordeckSdk.tiles().getLocksBelongingToTileAsync(UUID.fromString(tileId))
       .thenApply { response ->
         promise.resolve(response.toNativeMap())
       }
@@ -110,7 +114,7 @@ class HeadlessReactNativeSdkModule(
     doordeckSdk.lockOperations().unlockAsync(
       LockOperations.UnlockOperation(
         LockOperations.BaseOperation(
-          lockId = lockId,
+          lockId = UUID.fromString(lockId),
         )
       )
     )
@@ -130,10 +134,7 @@ class HeadlessReactNativeSdkModule(
   private fun setKeyPairIfNeeded() {
     if (!doordeckSdk.contextManager().isKeyPairValid()) {
       val newKeyPair = doordeckSdk.crypto().generateKeyPair()
-      doordeckSdk.contextManager().setKeyPair(
-        publicKey = newKeyPair.public,
-        privateKey = newKeyPair.private,
-      )
+      doordeckSdk.contextManager().setKeyPair(newKeyPair)
     }
   }
 
@@ -152,10 +153,10 @@ class HeadlessReactNativeSdkModule(
   }
 
   private fun TileLocksResponse.toNativeMap() = Arguments.createMap().apply {
-    putString("siteId", siteId)
-    putString("tileId", tileId)
+    putString("siteId", siteId.toString())
+    putString("tileId", tileId.toString())
     putArray("deviceIds", Arguments.createArray().apply {
-      deviceIds.forEach { pushString(it) }
+      deviceIds.forEach { pushString(it.toString()) }
     })
   }
 
@@ -167,10 +168,11 @@ class HeadlessReactNativeSdkModule(
     putString("userId", userId)
     putBoolean("certificateChainAboutToExpire", certificateChainAboutToExpire)
     putBoolean("tokenAboutToExpire", tokenAboutToExpire)
-    putString("publicKey", publicKey)
+    // The SDK now returns a java.security.PublicKey; expose its X.509 (SPKI)
+    // form as a base64 string to preserve the `publicKey: string` JS contract.
+    putString("publicKey", Base64.getEncoder().encodeToString(publicKey.encoded))
     putString("email", email)
     putString("displayName", displayName)
     putBoolean("emailVerified", emailVerified)
   }
 }
-

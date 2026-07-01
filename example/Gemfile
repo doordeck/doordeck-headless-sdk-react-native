@@ -6,6 +6,13 @@ ruby ">= 3.1.0"
 
 # Exclude problematic versions of cocoapods that cause build failures.
 gem 'cocoapods', '>= 1.13', '!= 1.15.0', '!= 1.15.1'
+# Ruby 3.4 removed these from the default gems / stdlib; declare them explicitly
+# so CocoaPods keeps working under Ruby 3.4 (added by the RN 0.86 template).
+gem 'bigdecimal'
+gem 'logger'
+gem 'benchmark'
+gem 'mutex_m'
+gem 'nkf'
 # activesupport >= 7.2.3.1 patches CVE-2026-33169/33170/33176; < 8 keeps it on the
 # Ruby 3.1-compatible line and within cocoapods' supported range.
 gem 'activesupport', '>= 7.2.3.1', '< 8'

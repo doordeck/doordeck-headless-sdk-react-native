@@ -87,3 +87,6 @@ nitrogen/
 
 # To always use the latest Doordeck SDK version
 example/ios/Podfile.lock
+
+# Kotlin
+.kotlin/

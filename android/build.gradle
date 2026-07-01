@@ -9,7 +9,7 @@ buildscript {
   }
 
   dependencies {
-    classpath "com.android.tools.build:gradle:8.7.2"
+    classpath "com.android.tools.build:gradle:8.12.0"
     // noinspection DifferentKotlinGradleVersion
     classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:${getExtOrDefault('kotlinVersion')}"
   }
@@ -51,11 +51,11 @@ android {
     }
   }
 
-  compileSdkVersion getExtOrIntegerDefault("compileSdkVersion")
+  compileSdk getExtOrIntegerDefault("compileSdkVersion")
 
   defaultConfig {
-    minSdkVersion getExtOrIntegerDefault("minSdkVersion")
-    targetSdkVersion getExtOrIntegerDefault("targetSdkVersion")
+    minSdk getExtOrIntegerDefault("minSdkVersion")
+    targetSdk getExtOrIntegerDefault("targetSdkVersion")
     buildConfigField "boolean", "IS_NEW_ARCHITECTURE_ENABLED", isNewArchitectureEnabled().toString()
   }
 
@@ -69,8 +69,8 @@ android {
     }
   }
 
-  lintOptions {
-    disable "GradleCompatible"
+  lint {
+    disable += "GradleCompatible"
   }
 
   compileOptions {
@@ -98,7 +98,7 @@ repositories {
 
 def kotlin_version = getExtOrDefault("kotlinVersion")
 
-def doordeckSdkVersion = "0.86.0"
+def doordeckSdkVersion = "0.185.0"
 
 dependencies {
   implementation "com.facebook.react:react-android"
