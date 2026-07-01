@@ -1,5 +1,5 @@
 
-#import "generated/RNHeadlessReactNativeSdkSpec/RNHeadlessReactNativeSdkSpec.h"
+#import "generated/ReactCodegen/RNHeadlessReactNativeSdkSpec/RNHeadlessReactNativeSdkSpec.h"
 
 @interface HeadlessReactNativeSdk : NSObject <NativeHeadlessReactNativeSdkSpec>
 
