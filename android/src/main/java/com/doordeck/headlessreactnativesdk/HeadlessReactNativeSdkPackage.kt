@@ -14,10 +14,11 @@ class HeadlessReactNativeSdkPackage : BaseReactPackage() {
     return if (name == HeadlessReactNativeSdkModule.NAME) {
       // The Android application context is supplied automatically by the SDK's
       // bundled DoordeckContextProvider (a ContentProvider auto-registered in the
-      // AAR manifest), so the bridge no longer sets it explicitly.
+      // AAR manifest), so the bridge no longer sets it explicitly. initialize() is
+      // now a suspend fun; use the blocking CompletableFuture variant here.
       HeadlessReactNativeSdkModule(
         reactContext = reactContext,
-        doordeckSdk = KDoordeckFactory.initialize(SdkConfig.Builder().build())
+        doordeckSdk = KDoordeckFactory.initializeAsync(SdkConfig.Builder().build()).get()
       )
     } else {
       null
