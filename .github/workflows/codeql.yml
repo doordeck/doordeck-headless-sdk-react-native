@@ -44,6 +44,12 @@ jobs:
   analyze-swift:
     name: "Analyze (swift)"
     runs-on: macos-latest
+    # Skip on Dependabot PRs: the Swift build under CodeQL's tracer takes 40+
+    # minutes on macOS runners, and dependency bumps can't affect the Swift
+    # source. Still runs on regular PRs, pushes to main, and the weekly schedule.
+    if: >-
+      github.event_name != 'pull_request' ||
+      github.event.pull_request.user.login != 'dependabot[bot]'
     steps:
       - name: Checkout
         uses: actions/checkout@v7
