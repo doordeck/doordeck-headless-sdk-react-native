@@ -5,7 +5,10 @@ import type { RootStackParamList } from '../navigation/AppNavigator';
 import styles from '../styles/styles';
 import { unlockDevice } from '@doordeck/headless-react-native-sdk';
 
-type UnlockDeviceScreenNavigationProp = StackNavigationProp<RootStackParamList, 'UnlockDevice'>;
+type UnlockDeviceScreenNavigationProp = StackNavigationProp<
+  RootStackParamList,
+  'UnlockDevice'
+>;
 
 interface UnlockDeviceScreenProps {
   navigation: UnlockDeviceScreenNavigationProp;
@@ -37,8 +40,14 @@ const UnlockDeviceScreen: React.FC<UnlockDeviceScreenProps> = () => {
       />
       <Button title="Unlock Device" onPress={handleUnlockDevice} />
 
-      {success && <Text style={styles.resultNeedsVerificationOrError}>Unlocked!</Text>}
-      {error && <Text style={styles.resultNeedsVerificationOrError}>Error: {error}</Text>}
+      {success && (
+        <Text style={styles.resultNeedsVerificationOrError}>Unlocked!</Text>
+      )}
+      {error && (
+        <Text style={styles.resultNeedsVerificationOrError}>
+          Error: {error}
+        </Text>
+      )}
     </View>
   );
 };

@@ -2,13 +2,13 @@ import { createStackNavigator } from '@react-navigation/stack';
 import { NavigationContainer } from '@react-navigation/native';
 import HomeScreen from '../screens/HomeScreen';
 import LoginScreen from '../screens/LoginScreen';
-import {Text} from "react-native";
-import styles from "../styles/styles";
-import SetAuthTokenScreen from "../screens/SetAuthTokenScreen";
-import VerificationScreen from "../screens/VerificationScreen";
-import InspectTileScreen from "../screens/InspectTileScreen";
-import UnlockDeviceScreen from "../screens/UnlockDeviceScreen";
-import UserDetailsScreen from "../screens/UserDetailsScreen";
+import { Text } from 'react-native';
+import styles from '../styles/styles';
+import SetAuthTokenScreen from '../screens/SetAuthTokenScreen';
+import VerificationScreen from '../screens/VerificationScreen';
+import InspectTileScreen from '../screens/InspectTileScreen';
+import UnlockDeviceScreen from '../screens/UnlockDeviceScreen';
+import UserDetailsScreen from '../screens/UserDetailsScreen';
 
 export type RootStackParamList = {
   Home: undefined;
@@ -30,14 +30,25 @@ const AppNavigator = () => {
           headerTitleAlign: 'center',
         }}
       >
-        <Stack.Screen name="Home" component={HomeScreen} options={{ title: 'Home' }} />
+        <Stack.Screen
+          name="Home"
+          component={HomeScreen}
+          options={{ title: 'Home' }}
+        />
         <Stack.Screen
           name="Login"
           component={LoginScreen}
           options={({ navigation }) => ({
             title: 'Login',
             headerBackTitle: '',
-            headerLeft: (_) => <Text style={styles.appBarStyle} onPress={() => navigation.goBack()} >Back</Text>,
+            headerLeft: (_) => (
+              <Text
+                style={styles.appBarStyle}
+                onPress={() => navigation.goBack()}
+              >
+                Back
+              </Text>
+            ),
           })}
         />
         <Stack.Screen
@@ -46,7 +57,14 @@ const AppNavigator = () => {
           options={({ navigation }) => ({
             title: 'Set Auth Token',
             headerBackTitle: '',
-            headerLeft: (_) => <Text style={styles.appBarStyle} onPress={() => navigation.goBack()} >Back</Text>,
+            headerLeft: (_) => (
+              <Text
+                style={styles.appBarStyle}
+                onPress={() => navigation.goBack()}
+              >
+                Back
+              </Text>
+            ),
           })}
         />
         <Stack.Screen
@@ -55,7 +73,14 @@ const AppNavigator = () => {
           options={({ navigation }) => ({
             title: 'User Details',
             headerBackTitle: '',
-            headerLeft: (_) => <Text style={styles.appBarStyle} onPress={() => navigation.goBack()} >Back</Text>,
+            headerLeft: (_) => (
+              <Text
+                style={styles.appBarStyle}
+                onPress={() => navigation.goBack()}
+              >
+                Back
+              </Text>
+            ),
           })}
         />
         <Stack.Screen
@@ -64,7 +89,14 @@ const AppNavigator = () => {
           options={({ navigation }) => ({
             title: 'Verification',
             headerBackTitle: '',
-            headerLeft: (_) => <Text style={styles.appBarStyle} onPress={() => navigation.goBack()} >Back</Text>,
+            headerLeft: (_) => (
+              <Text
+                style={styles.appBarStyle}
+                onPress={() => navigation.goBack()}
+              >
+                Back
+              </Text>
+            ),
           })}
         />
         <Stack.Screen
@@ -73,7 +105,14 @@ const AppNavigator = () => {
           options={({ navigation }) => ({
             title: 'Inspect Tile',
             headerBackTitle: '',
-            headerLeft: (_) => <Text style={styles.appBarStyle} onPress={() => navigation.goBack()} >Back</Text>,
+            headerLeft: (_) => (
+              <Text
+                style={styles.appBarStyle}
+                onPress={() => navigation.goBack()}
+              >
+                Back
+              </Text>
+            ),
           })}
         />
         <Stack.Screen
@@ -82,7 +121,14 @@ const AppNavigator = () => {
           options={({ navigation }) => ({
             title: 'Unlock Device',
             headerBackTitle: '',
-            headerLeft: (_) => <Text style={styles.appBarStyle} onPress={() => navigation.goBack()} >Back</Text>,
+            headerLeft: (_) => (
+              <Text
+                style={styles.appBarStyle}
+                onPress={() => navigation.goBack()}
+              >
+                Back
+              </Text>
+            ),
           })}
         />
       </Stack.Navigator>

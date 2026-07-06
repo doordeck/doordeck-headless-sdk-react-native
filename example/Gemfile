@@ -16,4 +16,6 @@ gem 'nkf'
 # activesupport >= 7.2.3.1 patches CVE-2026-33169/33170/33176; < 8 keeps it on the
 # Ruby 3.1-compatible line and within cocoapods' supported range.
 gem 'activesupport', '>= 7.2.3.1', '< 8'
-gem 'xcodeproj', '< 1.26.0'
+# The RN template pins xcodeproj < 1.26.0 for Ruby 2.6 compatibility; this project
+# requires Ruby >= 3.1 so the newer line is fine. 1.28 is unreleased/untested.
+gem 'xcodeproj', '< 1.28.0'

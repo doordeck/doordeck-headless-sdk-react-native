@@ -1,5 +1,5 @@
-import type {TurboModule} from 'react-native';
-import {TurboModuleRegistry} from 'react-native';
+import type { TurboModule } from 'react-native';
+import { TurboModuleRegistry } from 'react-native';
 
 export interface Spec extends TurboModule {
   /**
@@ -14,7 +14,7 @@ export interface Spec extends TurboModule {
    */
   login(
     email: string,
-    password: string,
+    password: string
   ): Promise<AssistedRegisterEphemeralKeyResponse>;
 
   /**
@@ -27,7 +27,7 @@ export interface Spec extends TurboModule {
    *                            60-second throttle for this operation
    */
   setAuthToken(
-    authToken: string,
+    authToken: string
   ): Promise<AssistedRegisterEphemeralKeyResponse>;
 
   /**
@@ -41,7 +41,7 @@ export interface Spec extends TurboModule {
   /**
    * @param code  - code sent for verification
    */
-  verify(code: string): Promise<void>
+  verify(code: string): Promise<void>;
 
   /**
    * Logs out the user inside the SDK.
@@ -49,7 +49,7 @@ export interface Spec extends TurboModule {
    *
    * @return a Promise when it's done.
    */
-  logout(): Promise<void>
+  logout(): Promise<void>;
 
   /**
    * @param tileId - tile UUID usually scanned from a QR code or obtained from an NFC tag
@@ -72,7 +72,7 @@ export type TileLocksResponse = {
 
 export type AssistedRegisterEphemeralKeyResponse = {
   requiresVerification: boolean;
-}
+};
 
 export type UserDetailsResponse = {
   userId?: string;
@@ -82,6 +82,6 @@ export type UserDetailsResponse = {
   emailVerified: boolean;
   certificateChainAboutToExpire: boolean;
   tokenAboutToExpire: boolean;
-}
+};
 
 export default TurboModuleRegistry.getEnforcing<Spec>('HeadlessReactNativeSdk');

@@ -10,8 +10,8 @@
     "build:ios": "react-native build-ios --scheme HeadlessReactNativeSdkExample --mode Debug --extra-params \"-sdk iphonesimulator EXCLUDED_ARCHS=x86_64 CC=clang CPLUSPLUS=clang++ LD=clang LDPLUSPLUS=clang++ GCC_OPTIMIZATION_LEVEL=0 GCC_PRECOMPILE_PREFIX_HEADER=YES ASSETCATALOG_COMPILER_OPTIMIZATION=time DEBUG_INFORMATION_FORMAT=dwarf COMPILER_INDEX_STORE_ENABLE=NO\""
   },
   "dependencies": {
-    "@react-navigation/native": "^7.0.14",
-    "@react-navigation/stack": "^7.1.1",
+    "@react-navigation/native": "^7.3.7",
+    "@react-navigation/stack": "^7.10.10",
     "react": "19.2.7",
     "react-native": "0.86.0",
     "react-native-gesture-handler": "^3.0.2",
@@ -35,6 +35,6 @@
     "react-native-builder-bob": "^0.43.0"
   },
   "engines": {
-    "node": ">=22.11.0"
+    "node": ">=22.12.0"
   }
 }

@@ -146,7 +146,6 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     marginTop: 10,
   },
-
 });
 
 export default styles;
