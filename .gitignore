@@ -87,6 +87,9 @@ nitrogen/
 
 # To always use the latest Doordeck SDK version
 example/ios/Podfile.lock
+# SPM resolution state (Package.resolved etc.) — the SPM twin of Podfile.lock;
+# the DoordeckSDK package version is pinned in the podspec
+example/ios/*.xcworkspace/xcshareddata/
 
 # Kotlin
 .kotlin/
