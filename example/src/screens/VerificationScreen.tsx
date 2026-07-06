@@ -5,7 +5,10 @@ import type { RootStackParamList } from '../navigation/AppNavigator';
 import styles from '../styles/styles';
 import { verify } from '@doordeck/headless-react-native-sdk';
 
-type VerificationScreenNavigationProp = StackNavigationProp<RootStackParamList, 'Verification'>;
+type VerificationScreenNavigationProp = StackNavigationProp<
+  RootStackParamList,
+  'Verification'
+>;
 
 interface VerificationScreenProps {
   navigation: VerificationScreenNavigationProp;
@@ -21,7 +24,9 @@ const VerificationScreen: React.FC<VerificationScreenProps> = () => {
     setSuccess(undefined);
 
     verify(verificationCode)
-      .then((_) => { setSuccess(true)})
+      .then((_) => {
+        setSuccess(true);
+      })
       .catch(setError);
   };
 
@@ -43,7 +48,9 @@ const VerificationScreen: React.FC<VerificationScreenProps> = () => {
         </Text>
       )}
       {error && (
-        <Text style={styles.resultNeedsVerificationOrError}>Error: {String(error)}</Text>
+        <Text style={styles.resultNeedsVerificationOrError}>
+          Error: {String(error)}
+        </Text>
       )}
     </View>
   );

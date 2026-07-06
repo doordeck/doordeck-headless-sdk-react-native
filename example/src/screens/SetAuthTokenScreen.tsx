@@ -6,7 +6,10 @@ import styles from '../styles/styles';
 import { setAuthToken } from '@doordeck/headless-react-native-sdk';
 import type { AssistedRegisterEphemeralKeyResponse } from '../../../src/NativeHeadlessReactNativeSdk';
 
-type SetAuthTokenScreenNavigationProp = StackNavigationProp<RootStackParamList, 'SetAuthToken'>;
+type SetAuthTokenScreenNavigationProp = StackNavigationProp<
+  RootStackParamList,
+  'SetAuthToken'
+>;
 
 interface SetAuthTokenScreenProps {
   navigation: SetAuthTokenScreenNavigationProp;
@@ -14,16 +17,15 @@ interface SetAuthTokenScreenProps {
 
 const SetAuthTokenScreen: React.FC<SetAuthTokenScreenProps> = (_) => {
   const [authToken, setAuthTokenValue] = useState('');
-  const [needsVerification, setNeedsVerification] = useState<AssistedRegisterEphemeralKeyResponse>();
+  const [needsVerification, setNeedsVerification] =
+    useState<AssistedRegisterEphemeralKeyResponse>();
   const [error, setError] = useState();
 
   const handleSetAuthToken = async () => {
     setError(undefined);
     setNeedsVerification(undefined);
 
-    setAuthToken(authToken)
-      .then(setNeedsVerification)
-      .catch(setError);
+    setAuthToken(authToken).then(setNeedsVerification).catch(setError);
   };
 
   return (
@@ -39,11 +41,14 @@ const SetAuthTokenScreen: React.FC<SetAuthTokenScreenProps> = (_) => {
       <Button title="Submit" onPress={handleSetAuthToken} />
       {needsVerification && (
         <Text style={styles.resultNeedsVerificationOrError}>
-          Needs verification/Code sent to email: {String(needsVerification.requiresVerification)}
+          Needs verification/Code sent to email:{' '}
+          {String(needsVerification.requiresVerification)}
         </Text>
       )}
       {error && (
-        <Text style={styles.resultNeedsVerificationOrError}>Error: {String(error)}</Text>
+        <Text style={styles.resultNeedsVerificationOrError}>
+          Error: {String(error)}
+        </Text>
       )}
     </View>
   );

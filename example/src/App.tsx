@@ -1,5 +1,5 @@
-import AppNavigator from "./navigation/AppNavigator";
-import {enableScreens} from "react-native-screens";
+import AppNavigator from './navigation/AppNavigator';
+import { enableScreens } from 'react-native-screens';
 
 enableScreens();
 

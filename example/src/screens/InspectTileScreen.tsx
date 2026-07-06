@@ -1,5 +1,13 @@
 import React, { useState } from 'react';
-import {Text, TextInput, View, Button, FlatList, TouchableOpacity, Clipboard} from 'react-native';
+import {
+  Text,
+  TextInput,
+  View,
+  Button,
+  FlatList,
+  TouchableOpacity,
+  Clipboard,
+} from 'react-native';
 import type { StackNavigationProp } from '@react-navigation/stack';
 import type { RootStackParamList } from '../navigation/AppNavigator';
 import styles from '../styles/styles';
@@ -11,7 +19,10 @@ export type TileLocksResponse = {
   deviceIds: string[];
 };
 
-type InspectTileScreenNavigationProp = StackNavigationProp<RootStackParamList, 'InspectTile'>;
+type InspectTileScreenNavigationProp = StackNavigationProp<
+  RootStackParamList,
+  'InspectTile'
+>;
 
 interface InspectTileScreenProps {
   navigation: InspectTileScreenNavigationProp;
@@ -26,9 +37,7 @@ const InspectTileScreen: React.FC<InspectTileScreenProps> = () => {
     setError(undefined);
     setTileData(undefined);
 
-    getLocksBelongingToTile(uuid)
-      .then(setTileData)
-      .catch(setError);
+    getLocksBelongingToTile(uuid).then(setTileData).catch(setError);
   };
 
   const copyToClipboard = Clipboard.setString;
@@ -54,7 +63,10 @@ const InspectTileScreen: React.FC<InspectTileScreenProps> = () => {
             renderItem={({ item }) => (
               <View style={styles.tileItem}>
                 <Text style={styles.deviceIdText}>{item}</Text>
-                <TouchableOpacity onPress={() => copyToClipboard(item)} style={styles.copyButton}>
+                <TouchableOpacity
+                  onPress={() => copyToClipboard(item)}
+                  style={styles.copyButton}
+                >
                   <Text style={styles.copyButtonText}>Copy</Text>
                 </TouchableOpacity>
               </View>
@@ -63,7 +75,11 @@ const InspectTileScreen: React.FC<InspectTileScreenProps> = () => {
         </>
       )}
 
-      {error && <Text style={styles.resultNeedsVerificationOrError}>Error: {String(error)}</Text>}
+      {error && (
+        <Text style={styles.resultNeedsVerificationOrError}>
+          Error: {String(error)}
+        </Text>
+      )}
     </View>
   );
 };

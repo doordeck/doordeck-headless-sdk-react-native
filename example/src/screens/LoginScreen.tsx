@@ -6,7 +6,10 @@ import styles from '../styles/styles';
 import { login } from '@doordeck/headless-react-native-sdk';
 import type { AssistedRegisterEphemeralKeyResponse } from '../../../src/NativeHeadlessReactNativeSdk';
 
-type LoginScreenNavigationProp = StackNavigationProp<RootStackParamList, 'Login'>;
+type LoginScreenNavigationProp = StackNavigationProp<
+  RootStackParamList,
+  'Login'
+>;
 
 interface LoginScreenProps {
   navigation: LoginScreenNavigationProp;
@@ -15,16 +18,15 @@ interface LoginScreenProps {
 const LoginScreen: React.FC<LoginScreenProps> = (_) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [needsVerification, setNeedsVerification] = useState<AssistedRegisterEphemeralKeyResponse>();
+  const [needsVerification, setNeedsVerification] =
+    useState<AssistedRegisterEphemeralKeyResponse>();
   const [error, setError] = useState();
 
   const handleLogin = async () => {
     setError(undefined);
     setNeedsVerification(undefined);
 
-    login(email, password)
-      .then(setNeedsVerification)
-      .catch(setError);
+    login(email, password).then(setNeedsVerification).catch(setError);
   };
 
   return (
@@ -49,11 +51,14 @@ const LoginScreen: React.FC<LoginScreenProps> = (_) => {
       <Button title="Submit" onPress={handleLogin} />
       {needsVerification && (
         <Text style={styles.resultNeedsVerificationOrError}>
-          Needs verification/Code sent to email: {String(needsVerification.requiresVerification)}
+          Needs verification/Code sent to email:{' '}
+          {String(needsVerification.requiresVerification)}
         </Text>
       )}
       {error && (
-        <Text style={styles.resultNeedsVerificationOrError}>Error: {String(error)}</Text>
+        <Text style={styles.resultNeedsVerificationOrError}>
+          Error: {String(error)}
+        </Text>
       )}
     </View>
   );
