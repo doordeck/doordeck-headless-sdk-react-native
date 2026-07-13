@@ -2475,21 +2475,21 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@commitlint/cli@npm:^21.2.0":
-  version: 21.2.0
-  resolution: "@commitlint/cli@npm:21.2.0"
+"@commitlint/cli@npm:^21.2.1":
+  version: 21.2.1
+  resolution: "@commitlint/cli@npm:21.2.1"
   dependencies:
     "@commitlint/config-conventional": ^21.2.0
     "@commitlint/format": ^21.2.0
     "@commitlint/lint": ^21.2.0
     "@commitlint/load": ^21.2.0
-    "@commitlint/read": ^21.2.0
+    "@commitlint/read": ^21.2.1
     "@commitlint/types": ^21.2.0
     tinyexec: ^1.0.0
     yargs: ^18.0.0
   bin:
     commitlint: cli.js
-  checksum: b96cebf92b7c41aa28cfe7814c36dcb1a0c5136c423823dc2173f8f33543e62f3c35425b33b019700a8e3404da17486e23c04af3987353751d1de6e973c2a4f8
+  checksum: 34663df2d44ed34a25c41c88f6993f2e828d010cb029cb54bcff857ce5ede6f67bb4f1347451451968d9ff4ac80531dbbd5b1c6f5a82d92addd707484217522e
   languageName: node
   linkType: hard
 
@@ -2597,15 +2597,15 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@commitlint/read@npm:^21.2.0":
-  version: 21.2.0
-  resolution: "@commitlint/read@npm:21.2.0"
+"@commitlint/read@npm:^21.2.1":
+  version: 21.2.1
+  resolution: "@commitlint/read@npm:21.2.1"
   dependencies:
     "@commitlint/top-level": ^21.2.0
     "@commitlint/types": ^21.2.0
-    git-raw-commits: ^5.0.0
+    "@conventional-changelog/git-client": ^3.0.0
     tinyexec: ^1.0.0
-  checksum: 33b6669efb0de9019c8bc88be8cd8148563b9b89868d439940e82e59b974140de8cd025cc5a2c042460b302d151e706ea5ad65e37469d6ce76b8bd20749d681d
+  checksum: f128a17235bfa7e25a18aaaa3cae26de2effbe8a56808347d984da210b0027c0189b1ac277098e362c8b5e2ab06f2bd03d34f5c4dd6d280aa87398921eaab643
   languageName: node
   linkType: hard
 
@@ -2660,24 +2660,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@conventional-changelog/git-client@npm:^1.0.0":
-  version: 1.0.1
-  resolution: "@conventional-changelog/git-client@npm:1.0.1"
-  dependencies:
-    "@types/semver": ^7.5.5
-    semver: ^7.5.2
-  peerDependencies:
-    conventional-commits-filter: ^5.0.0
-    conventional-commits-parser: ^6.0.0
-  peerDependenciesMeta:
-    conventional-commits-filter:
-      optional: true
-    conventional-commits-parser:
-      optional: true
-  checksum: 4be45d4d1335878772fe0ad6e279970569c9526b544af3f58d31d70199f40c8051459a22f02d87c458a7c95f0ba68cd9a839da19504c5c40045c5b0691354305
-  languageName: node
-  linkType: hard
-
 "@conventional-changelog/git-client@npm:^2.5.1, @conventional-changelog/git-client@npm:^2.7.0":
   version: 2.7.0
   resolution: "@conventional-changelog/git-client@npm:2.7.0"
@@ -2694,6 +2676,25 @@ __metadata:
     conventional-commits-parser:
       optional: true
   checksum: 557ddc544549286d6a62db660d487eff55b973246b63be188f08b5fe48b08b673a8d50724f59f9012384aa7d7dbaa2c10044052a8253398e70db7e71ff3961d4
+  languageName: node
+  linkType: hard
+
+"@conventional-changelog/git-client@npm:^3.0.0":
+  version: 3.1.0
+  resolution: "@conventional-changelog/git-client@npm:3.1.0"
+  dependencies:
+    "@simple-libs/child-process-utils": ^2.0.0
+    "@simple-libs/stream-utils": ^2.0.0
+    semver: ^7.5.2
+  peerDependencies:
+    conventional-commits-filter: ^6.0.1
+    conventional-commits-parser: ^7.0.1
+  peerDependenciesMeta:
+    conventional-commits-filter:
+      optional: true
+    conventional-commits-parser:
+      optional: true
+  checksum: d8261a0ddfb373b706c56d5c2f0378df070622891d663cd6e4aff5c3902dfb8d7cee38add4b6bd2457ab7309ac8ea83e7a39bddc5a96b5111e457b96ce82d82a
   languageName: node
   linkType: hard
 
@@ -4232,29 +4233,29 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@react-navigation/elements@npm:^2.9.29":
-  version: 2.9.29
-  resolution: "@react-navigation/elements@npm:2.9.29"
+"@react-navigation/elements@npm:^2.9.30":
+  version: 2.9.30
+  resolution: "@react-navigation/elements@npm:2.9.30"
   dependencies:
     color: ^4.2.3
     use-latest-callback: ^0.2.4
     use-sync-external-store: ^1.5.0
   peerDependencies:
     "@react-native-masked-view/masked-view": ">= 0.2.0"
-    "@react-navigation/native": ^7.3.7
+    "@react-navigation/native": ^7.3.8
     react: ">= 18.2.0"
     react-native: "*"
     react-native-safe-area-context: ">= 4.0.0"
   peerDependenciesMeta:
     "@react-native-masked-view/masked-view":
       optional: true
-  checksum: ce0e7243e4734030c72938e062e969863083d689448e9b96c4d54b3d0c9ea5df94b5caa93dc27895983e6bf9b4616a7ec57a20a2aeab5398fdb83c7191ccbb38
+  checksum: 65e7c9d995b13166be3d411cfe13e15b3433faa051bc497d884e24685cdb5ca1a02c479da10dad6f2331238e73197c98ebebb3dd67a605e8998aa5003edb6aaf
   languageName: node
   linkType: hard
 
 "@react-navigation/native@npm:^7.3.7":
-  version: 7.3.7
-  resolution: "@react-navigation/native@npm:7.3.7"
+  version: 7.3.8
+  resolution: "@react-navigation/native@npm:7.3.8"
   dependencies:
     "@react-navigation/core": ^7.21.5
     escape-string-regexp: ^4.0.0
@@ -4265,7 +4266,7 @@ __metadata:
   peerDependencies:
     react: ">= 18.2.0"
     react-native: "*"
-  checksum: 627f285a9c156561194e531a7b7646d601cdeddd1e4797fb5342a0242d8692521c43340ab4c3fcb58ec2735c950fb354c8975c9d15df80042ef87fc36e90e6f6
+  checksum: 2549910b30aafcaa2bf42339b36f65764b11a58f754ca69e91bd7f238deded2a2200ec3ad8255fe7eda197e4f01506c87d4d2b44ce8cd719df759568878c53c3
   languageName: node
   linkType: hard
 
@@ -4279,20 +4280,20 @@ __metadata:
   linkType: hard
 
 "@react-navigation/stack@npm:^7.10.10":
-  version: 7.10.10
-  resolution: "@react-navigation/stack@npm:7.10.10"
+  version: 7.10.11
+  resolution: "@react-navigation/stack@npm:7.10.11"
   dependencies:
-    "@react-navigation/elements": ^2.9.29
+    "@react-navigation/elements": ^2.9.30
     color: ^4.2.3
     use-latest-callback: ^0.2.4
   peerDependencies:
-    "@react-navigation/native": ^7.3.7
+    "@react-navigation/native": ^7.3.8
     react: ">= 18.2.0"
     react-native: "*"
     react-native-gesture-handler: ">= 2.0.0"
     react-native-safe-area-context: ">= 4.0.0"
     react-native-screens: ">= 4.0.0"
-  checksum: 309af3730cbccc815a11956869cc3fc84668a5e70a8e5cba7e8fad981c1108338af69c29b5cd0a5678a1329788dd4844b8c505a68997931c2e7f403a824d6aaf
+  checksum: fca232180e32f655f048a7c9de0158a1fb5687a248dcd7d0efd3b024755036505419f2b36b0349fdc86dd57ae8ba44fd629b53772ebeae55b09ac7eb087f4db3
   languageName: node
   linkType: hard
 
@@ -4342,6 +4343,15 @@ __metadata:
   dependencies:
     "@simple-libs/stream-utils": ^1.2.0
   checksum: 87c6db43110cad05dad892e46922b60740ce94742e1ef48190246a5fb4a0302a18a698a5b1b959b89f4d1e53767a310d0c9c9583ba48d2dbe93340fc5e0820f8
+  languageName: node
+  linkType: hard
+
+"@simple-libs/child-process-utils@npm:^2.0.0":
+  version: 2.0.0
+  resolution: "@simple-libs/child-process-utils@npm:2.0.0"
+  dependencies:
+    "@simple-libs/stream-utils": ^2.0.0
+  checksum: d2388d0f30b2bfaedf444530568ccdd01ca2a6cc3f4dfa3244abaffe3683b03add96727735560be5fb951d0b512f5bfef69219653690c7305f8fc953d3723333
   languageName: node
   linkType: hard
 
@@ -4398,44 +4408,44 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@turbo/darwin-64@npm:2.10.3":
-  version: 2.10.3
-  resolution: "@turbo/darwin-64@npm:2.10.3"
+"@turbo/darwin-64@npm:2.10.4":
+  version: 2.10.4
+  resolution: "@turbo/darwin-64@npm:2.10.4"
   conditions: os=darwin & cpu=x64
   languageName: node
   linkType: hard
 
-"@turbo/darwin-arm64@npm:2.10.3":
-  version: 2.10.3
-  resolution: "@turbo/darwin-arm64@npm:2.10.3"
+"@turbo/darwin-arm64@npm:2.10.4":
+  version: 2.10.4
+  resolution: "@turbo/darwin-arm64@npm:2.10.4"
   conditions: os=darwin & cpu=arm64
   languageName: node
   linkType: hard
 
-"@turbo/linux-64@npm:2.10.3":
-  version: 2.10.3
-  resolution: "@turbo/linux-64@npm:2.10.3"
+"@turbo/linux-64@npm:2.10.4":
+  version: 2.10.4
+  resolution: "@turbo/linux-64@npm:2.10.4"
   conditions: os=linux & cpu=x64
   languageName: node
   linkType: hard
 
-"@turbo/linux-arm64@npm:2.10.3":
-  version: 2.10.3
-  resolution: "@turbo/linux-arm64@npm:2.10.3"
+"@turbo/linux-arm64@npm:2.10.4":
+  version: 2.10.4
+  resolution: "@turbo/linux-arm64@npm:2.10.4"
   conditions: os=linux & cpu=arm64
   languageName: node
   linkType: hard
 
-"@turbo/windows-64@npm:2.10.3":
-  version: 2.10.3
-  resolution: "@turbo/windows-64@npm:2.10.3"
+"@turbo/windows-64@npm:2.10.4":
+  version: 2.10.4
+  resolution: "@turbo/windows-64@npm:2.10.4"
   conditions: os=win32 & cpu=x64
   languageName: node
   linkType: hard
 
-"@turbo/windows-arm64@npm:2.10.3":
-  version: 2.10.3
-  resolution: "@turbo/windows-arm64@npm:2.10.3"
+"@turbo/windows-arm64@npm:2.10.4":
+  version: 2.10.4
+  resolution: "@turbo/windows-arm64@npm:2.10.4"
   conditions: os=win32 & cpu=arm64
   languageName: node
   linkType: hard
@@ -4610,13 +4620,6 @@ __metadata:
   dependencies:
     csstype: ^3.2.2
   checksum: 9704dc2001b6bcc32efc6e3fe144e18c411d5ee8a5c8dfe572535e44bd300424c4e7bddc9314299eeec28efb547816368b5c9851c93a3082e8ad1265786f3d31
-  languageName: node
-  linkType: hard
-
-"@types/semver@npm:^7.5.5":
-  version: 7.5.8
-  resolution: "@types/semver@npm:7.5.8"
-  checksum: ea6f5276f5b84c55921785a3a27a3cd37afee0111dfe2bcb3e03c31819c197c782598f17f0b150a69d453c9584cd14c4c4d7b9a55d2c5e6cacd4d66fdb3b3663
   languageName: node
   linkType: hard
 
@@ -6024,14 +6027,14 @@ __metadata:
   linkType: hard
 
 "commitlint@npm:^21.2.0":
-  version: 21.2.0
-  resolution: "commitlint@npm:21.2.0"
+  version: 21.2.1
+  resolution: "commitlint@npm:21.2.1"
   dependencies:
-    "@commitlint/cli": ^21.2.0
+    "@commitlint/cli": ^21.2.1
     "@commitlint/types": ^21.2.0
   bin:
     commitlint: cli.js
-  checksum: add7539e57581d9602223169f33588c6c66ad1a5111c9b4624eeccf897cd46d9f859d445fc5a96687dab3ad0e85c00338263960900596e4d097cfd180d0950ff
+  checksum: 761191c8d87f2aad899ee9bff8cd511fa3cd723bd9b31dcb3818d3878f63370426d4da48e530def08ccba43eefbaae219e254082fe16dede028748c259171b2f
   languageName: node
   linkType: hard
 
@@ -7901,18 +7904,6 @@ __metadata:
   bin:
     giget: dist/cli.mjs
   checksum: 9957b75bc52e0c49203208e6d1e40511dacd0654e3f664323997eaeffb8b30080db393a44d206039f12bb5a29250546f574316e0593c42b9daae056f522d1603
-  languageName: node
-  linkType: hard
-
-"git-raw-commits@npm:^5.0.0":
-  version: 5.0.0
-  resolution: "git-raw-commits@npm:5.0.0"
-  dependencies:
-    "@conventional-changelog/git-client": ^1.0.0
-    meow: ^13.0.0
-  bin:
-    git-raw-commits: src/cli.js
-  checksum: 8e2767f3a1d751b9aef0f8e84259c87114f1691a0e90ee915ebff5b2f5f8e72d7ea573ff2930be4286c9e067e85713ae67c0645c02e647c5a9c0f5b00bfd6284
   languageName: node
   linkType: hard
 
@@ -11558,8 +11549,8 @@ __metadata:
   linkType: hard
 
 "react-native-worklets@npm:^0.10.0":
-  version: 0.10.1
-  resolution: "react-native-worklets@npm:0.10.1"
+  version: 0.10.2
+  resolution: "react-native-worklets@npm:0.10.2"
   dependencies:
     "@babel/plugin-transform-arrow-functions": ^7.27.1
     "@babel/plugin-transform-class-properties": ^7.28.6
@@ -11578,7 +11569,7 @@ __metadata:
     "@react-native/metro-config": "*"
     react: "*"
     react-native: 0.83 - 0.86
-  checksum: a0b26b9a382d34b03ae39fb2035a871684a36f0726a8c858e415f78be6a8711e60bbbcd555c0717b46809666591d9cc0040ba9e463b9c23a5738ee29f5019947
+  checksum: 9950e9e72e323ce85fb9b1863f08d9cf8adfb4babb3dcf27579ad9586118c8e7904d9f8fa209352dfb8a8a9cbbf5f1caa5e671f356c9d34950f4a1ae5d652671
   languageName: node
   linkType: hard
 
@@ -12967,15 +12958,15 @@ __metadata:
   linkType: hard
 
 "turbo@npm:^2.10.1":
-  version: 2.10.3
-  resolution: "turbo@npm:2.10.3"
+  version: 2.10.4
+  resolution: "turbo@npm:2.10.4"
   dependencies:
-    "@turbo/darwin-64": 2.10.3
-    "@turbo/darwin-arm64": 2.10.3
-    "@turbo/linux-64": 2.10.3
-    "@turbo/linux-arm64": 2.10.3
-    "@turbo/windows-64": 2.10.3
-    "@turbo/windows-arm64": 2.10.3
+    "@turbo/darwin-64": 2.10.4
+    "@turbo/darwin-arm64": 2.10.4
+    "@turbo/linux-64": 2.10.4
+    "@turbo/linux-arm64": 2.10.4
+    "@turbo/windows-64": 2.10.4
+    "@turbo/windows-arm64": 2.10.4
   dependenciesMeta:
     "@turbo/darwin-64":
       optional: true
@@ -12991,7 +12982,7 @@ __metadata:
       optional: true
   bin:
     turbo: bin/turbo
-  checksum: 5cc1c0f6390a28bab731735b8d8b86a4a2cbbdbccf5bf1e4cc500fd7042737555c61b1abe83a6d31b2b33f4dbf7fd2d5bf2135623d0aaa3cf05aa2aef38dabfe
+  checksum: 0bc7cb6c8d5d3bc63f4746bf6c71c03bf857825a9288637a10ba82eed1a166226d388c70b04f0af7879b060fa26f831014863e0a2ebb5c88d56b087d0049f9f4
   languageName: node
   linkType: hard
 
