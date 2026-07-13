@@ -18,4 +18,4 @@ gem 'nkf'
 gem 'activesupport', '>= 7.2.3.1', '< 8'
 # The RN template pins xcodeproj < 1.26.0 for Ruby 2.6 compatibility; this project
 # requires Ruby >= 3.1 so the newer line is fine. 1.28 is unreleased/untested.
-gem 'xcodeproj', '< 1.28.0'
+gem 'xcodeproj', '< 1.29.0'
