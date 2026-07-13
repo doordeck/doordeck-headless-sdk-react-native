@@ -2713,7 +2713,7 @@ __metadata:
     "@babel/runtime": ^7.25.0
     "@react-native-community/cli": 20.1.0
     "@react-native-community/cli-platform-android": 20.2.0
-    "@react-native-community/cli-platform-ios": 20.1.0
+    "@react-native-community/cli-platform-ios": 20.2.0
     "@react-native/babel-preset": 0.86.0
     "@react-native/metro-config": 0.86.0
     "@react-native/typescript-config": 0.86.0
@@ -3753,6 +3753,18 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@react-native-community/cli-config-apple@npm:20.2.0":
+  version: 20.2.0
+  resolution: "@react-native-community/cli-config-apple@npm:20.2.0"
+  dependencies:
+    "@react-native-community/cli-tools": 20.2.0
+    execa: ^5.0.0
+    fast-glob: ^3.3.2
+    picocolors: ^1.1.1
+  checksum: f610f36a9847c10160a9e6575c38b4e38c8cf548091ceb56eb4c211a85db0efbb31c983a32a4fc0cbdcb108ea6f997038df6d08035534814ae51f0ef2de0fd7b
+  languageName: node
+  linkType: hard
+
 "@react-native-community/cli-config@npm:20.1.0":
   version: 20.1.0
   resolution: "@react-native-community/cli-config@npm:20.1.0"
@@ -3829,12 +3841,34 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@react-native-community/cli-platform-apple@npm:20.2.0":
+  version: 20.2.0
+  resolution: "@react-native-community/cli-platform-apple@npm:20.2.0"
+  dependencies:
+    "@react-native-community/cli-config-apple": 20.2.0
+    "@react-native-community/cli-tools": 20.2.0
+    execa: ^5.0.0
+    fast-xml-parser: ^5.3.6
+    picocolors: ^1.1.1
+  checksum: 4d3461ca3a48781d6fe352648cb22cd02fe58084da0309cf9c1cc508310665af5e4dd85e5e3988d19895c37f1fb0ededb54426078e3c16db1acb50d6b9f15422
+  languageName: node
+  linkType: hard
+
 "@react-native-community/cli-platform-ios@npm:20.1.0":
   version: 20.1.0
   resolution: "@react-native-community/cli-platform-ios@npm:20.1.0"
   dependencies:
     "@react-native-community/cli-platform-apple": 20.1.0
   checksum: da425c68bb20ade47f6283eba247d210206ddd651c9f80191c1b6e92ee5978a35b69df7a96c323dad9a0cf4dce7236ab84f34d9a6c51aa1d776d61de48f657eb
+  languageName: node
+  linkType: hard
+
+"@react-native-community/cli-platform-ios@npm:20.2.0":
+  version: 20.2.0
+  resolution: "@react-native-community/cli-platform-ios@npm:20.2.0"
+  dependencies:
+    "@react-native-community/cli-platform-apple": 20.2.0
+  checksum: 5ccec2a92842043bdabfa3464226571dc1c9bf8e73dac2adbd3dea98a1d9f6e75d2dcb5b4fee9ea48c2acf6921013ba70f9b751a7255715f59ce9e0d66e1a4fc
   languageName: node
   linkType: hard
 
