@@ -4239,11 +4239,11 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@react-navigation/core@npm:^7.21.5":
-  version: 7.21.5
-  resolution: "@react-navigation/core@npm:7.21.5"
+"@react-navigation/core@npm:^7.21.8":
+  version: 7.21.8
+  resolution: "@react-navigation/core@npm:7.21.8"
   dependencies:
-    "@react-navigation/routers": ^7.6.0
+    "@react-navigation/routers": ^7.6.2
     escape-string-regexp: ^4.0.0
     fast-deep-equal: ^3.1.3
     nanoid: ^3.3.11
@@ -4253,71 +4253,71 @@ __metadata:
     use-sync-external-store: ^1.5.0
   peerDependencies:
     react: ">= 18.2.0"
-  checksum: 7104ce21eed2f82fcd1256ad32f369cb7f6891b28a8004b2c24554897f23e651291c1ad0fa85006f0f8654882be5bc6369b39953b7d35f23a74372c6010e090d
+  checksum: 144bafc13cc2542eb68c273e97b97f4ec16796a3a92f929dedf525fb45bdeb94c134471c9e03acf8b163e14017f95b4959fa6f02fe7db344ec420c08b5df1c90
   languageName: node
   linkType: hard
 
-"@react-navigation/elements@npm:^2.9.30":
-  version: 2.9.30
-  resolution: "@react-navigation/elements@npm:2.9.30"
+"@react-navigation/elements@npm:^2.9.33":
+  version: 2.9.33
+  resolution: "@react-navigation/elements@npm:2.9.33"
   dependencies:
     color: ^4.2.3
     use-latest-callback: ^0.2.4
     use-sync-external-store: ^1.5.0
   peerDependencies:
     "@react-native-masked-view/masked-view": ">= 0.2.0"
-    "@react-navigation/native": ^7.3.8
+    "@react-navigation/native": ^7.3.11
     react: ">= 18.2.0"
     react-native: "*"
     react-native-safe-area-context: ">= 4.0.0"
   peerDependenciesMeta:
     "@react-native-masked-view/masked-view":
       optional: true
-  checksum: 65e7c9d995b13166be3d411cfe13e15b3433faa051bc497d884e24685cdb5ca1a02c479da10dad6f2331238e73197c98ebebb3dd67a605e8998aa5003edb6aaf
+  checksum: d136dfdce42280c20405af58d0a94b69457e8686ebf93335f3f1452d1f80ecae9ae8d89a6a691752fca334722d2622b8526b7d17d34efa5fc3c13731fcd85f3d
   languageName: node
   linkType: hard
 
 "@react-navigation/native@npm:^7.3.7":
-  version: 7.3.8
-  resolution: "@react-navigation/native@npm:7.3.8"
+  version: 7.3.11
+  resolution: "@react-navigation/native@npm:7.3.11"
   dependencies:
-    "@react-navigation/core": ^7.21.5
+    "@react-navigation/core": ^7.21.8
     escape-string-regexp: ^4.0.0
     fast-deep-equal: ^3.1.3
     nanoid: ^3.3.11
-    standard-navigation: ^0.0.7
+    standard-navigation: ^0.0.8
     use-latest-callback: ^0.2.4
   peerDependencies:
     react: ">= 18.2.0"
     react-native: "*"
-  checksum: 2549910b30aafcaa2bf42339b36f65764b11a58f754ca69e91bd7f238deded2a2200ec3ad8255fe7eda197e4f01506c87d4d2b44ce8cd719df759568878c53c3
+  checksum: f4966f9897b02408e930b97756479b8301ee3b2366e117c2e4f84bf86982dab109ebc844a9bc57dda8877068282339353944349575ade924db90b572992b0109
   languageName: node
   linkType: hard
 
-"@react-navigation/routers@npm:^7.6.0":
-  version: 7.6.0
-  resolution: "@react-navigation/routers@npm:7.6.0"
+"@react-navigation/routers@npm:^7.6.2":
+  version: 7.6.2
+  resolution: "@react-navigation/routers@npm:7.6.2"
   dependencies:
     nanoid: ^3.3.11
-  checksum: 8e2f29cf88d609db888c0888b9c8171e319aad6fc9dbe53cf77e417dc932b808333612c67db3c62775a2152c0d4b296d9db30428ac414b674dcfd474c9d3368f
+  checksum: 4e65ad3e22418af0591f4d2036bab5142d30bb6019ec9e45b1df3b4cd8110727de7da4d99c867c17e47285d091134811db79cc317b04243884303d32ae10f765
   languageName: node
   linkType: hard
 
 "@react-navigation/stack@npm:^7.10.10":
-  version: 7.10.11
-  resolution: "@react-navigation/stack@npm:7.10.11"
+  version: 7.10.14
+  resolution: "@react-navigation/stack@npm:7.10.14"
   dependencies:
-    "@react-navigation/elements": ^2.9.30
+    "@react-navigation/elements": ^2.9.33
     color: ^4.2.3
     use-latest-callback: ^0.2.4
   peerDependencies:
-    "@react-navigation/native": ^7.3.8
+    "@react-navigation/native": ^7.3.11
     react: ">= 18.2.0"
     react-native: "*"
     react-native-gesture-handler: ">= 2.0.0"
     react-native-safe-area-context: ">= 4.0.0"
     react-native-screens: ">= 4.0.0"
-  checksum: fca232180e32f655f048a7c9de0158a1fb5687a248dcd7d0efd3b024755036505419f2b36b0349fdc86dd57ae8ba44fd629b53772ebeae55b09ac7eb087f4db3
+  checksum: c4f5ca8a8343330e0644b9cc9ac4c3c5749552c0954719e17f7a395c2448589c2f3d48fe0eb6368ecd6070a0ee87d925cd190883154f17829a8f2e7dd98293a7
   languageName: node
   linkType: hard
 
@@ -4432,44 +4432,44 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@turbo/darwin-64@npm:2.10.4":
-  version: 2.10.4
-  resolution: "@turbo/darwin-64@npm:2.10.4"
+"@turbo/darwin-64@npm:2.10.5":
+  version: 2.10.5
+  resolution: "@turbo/darwin-64@npm:2.10.5"
   conditions: os=darwin & cpu=x64
   languageName: node
   linkType: hard
 
-"@turbo/darwin-arm64@npm:2.10.4":
-  version: 2.10.4
-  resolution: "@turbo/darwin-arm64@npm:2.10.4"
+"@turbo/darwin-arm64@npm:2.10.5":
+  version: 2.10.5
+  resolution: "@turbo/darwin-arm64@npm:2.10.5"
   conditions: os=darwin & cpu=arm64
   languageName: node
   linkType: hard
 
-"@turbo/linux-64@npm:2.10.4":
-  version: 2.10.4
-  resolution: "@turbo/linux-64@npm:2.10.4"
+"@turbo/linux-64@npm:2.10.5":
+  version: 2.10.5
+  resolution: "@turbo/linux-64@npm:2.10.5"
   conditions: os=linux & cpu=x64
   languageName: node
   linkType: hard
 
-"@turbo/linux-arm64@npm:2.10.4":
-  version: 2.10.4
-  resolution: "@turbo/linux-arm64@npm:2.10.4"
+"@turbo/linux-arm64@npm:2.10.5":
+  version: 2.10.5
+  resolution: "@turbo/linux-arm64@npm:2.10.5"
   conditions: os=linux & cpu=arm64
   languageName: node
   linkType: hard
 
-"@turbo/windows-64@npm:2.10.4":
-  version: 2.10.4
-  resolution: "@turbo/windows-64@npm:2.10.4"
+"@turbo/windows-64@npm:2.10.5":
+  version: 2.10.5
+  resolution: "@turbo/windows-64@npm:2.10.5"
   conditions: os=win32 & cpu=x64
   languageName: node
   linkType: hard
 
-"@turbo/windows-arm64@npm:2.10.4":
-  version: 2.10.4
-  resolution: "@turbo/windows-arm64@npm:2.10.4"
+"@turbo/windows-arm64@npm:2.10.5":
+  version: 2.10.5
+  resolution: "@turbo/windows-arm64@npm:2.10.5"
   conditions: os=win32 & cpu=arm64
   languageName: node
   linkType: hard
@@ -11324,16 +11324,16 @@ __metadata:
   linkType: hard
 
 "react-native-reanimated@npm:^4.5.0":
-  version: 4.5.1
-  resolution: "react-native-reanimated@npm:4.5.1"
+  version: 4.5.2
+  resolution: "react-native-reanimated@npm:4.5.2"
   dependencies:
     react-native-is-edge-to-edge: ^1.3.1
     semver: ^7.7.3
   peerDependencies:
     react: "*"
     react-native: 0.83 - 0.86
-    react-native-worklets: 0.10.x
-  checksum: 7ea6e48b4f9ab59f9a7acda40f0a433ff733df3216877390a5a6389fad011c5d7dc81762c4173fba29c7ddbf564dc50068d244bb7b20fdc91a79f83fa3a0e374
+    react-native-worklets: 0.10.x - 0.11.x
+  checksum: 7ae5801d6d763c5109aca5c0c737254a1c6d08d04582b2603482c4a0807949a42d7343aab74fa77cbe146f9da1b669eec741adbc339e73e5665868e2cb1de04b
   languageName: node
   linkType: hard
 
@@ -11348,15 +11348,15 @@ __metadata:
   linkType: hard
 
 "react-native-screens@npm:^4.25.2":
-  version: 4.26.0
-  resolution: "react-native-screens@npm:4.26.0"
+  version: 4.26.2
+  resolution: "react-native-screens@npm:4.26.2"
   dependencies:
     react-freeze: ^1.0.0
     warn-once: ^0.1.0
   peerDependencies:
     react: "*"
-    react-native: ">=0.84.0"
-  checksum: 3779112d5e8c6ba50fcfec27fc6a57eff0f36721c0e23262065061b3375f4233fd7160c9bd70125006bc3d888ef9afc4c1d09295195bedac69019f37ddf91c84
+    react-native: "*"
+  checksum: e4aad99f283e1c2a57839959fad93e0222e8bfdf3b59381f378f9949b2e8e76a8c53d1790fce40ec58a5bdcccea1de4a66a0242bb8651587da3822744a51bb4f
   languageName: node
   linkType: hard
 
@@ -12310,10 +12310,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"standard-navigation@npm:^0.0.7":
-  version: 0.0.7
-  resolution: "standard-navigation@npm:0.0.7"
-  checksum: 7c04912a93cd09d3e19c8c47a52f7808b53bc1b6fb897e21261e3401cb4340d505e9e4e387ac50662aa0534cdb2d091c03aeb5efc72fcd678925a3af5bbfce74
+"standard-navigation@npm:^0.0.8":
+  version: 0.0.8
+  resolution: "standard-navigation@npm:0.0.8"
+  peerDependencies:
+    react: "*"
+  checksum: 06f45f2a7dacf88e42ac675b6ae33efd30bb3d81d44e5470d2ea9eb206bf6d5fb2c1546c75c463034a98c6761f099be933d8813ed6d581196854c65946d35bb9
   languageName: node
   linkType: hard
 
@@ -12703,15 +12705,15 @@ __metadata:
   linkType: hard
 
 "turbo@npm:^2.10.1":
-  version: 2.10.4
-  resolution: "turbo@npm:2.10.4"
+  version: 2.10.5
+  resolution: "turbo@npm:2.10.5"
   dependencies:
-    "@turbo/darwin-64": 2.10.4
-    "@turbo/darwin-arm64": 2.10.4
-    "@turbo/linux-64": 2.10.4
-    "@turbo/linux-arm64": 2.10.4
-    "@turbo/windows-64": 2.10.4
-    "@turbo/windows-arm64": 2.10.4
+    "@turbo/darwin-64": 2.10.5
+    "@turbo/darwin-arm64": 2.10.5
+    "@turbo/linux-64": 2.10.5
+    "@turbo/linux-arm64": 2.10.5
+    "@turbo/windows-64": 2.10.5
+    "@turbo/windows-arm64": 2.10.5
   dependenciesMeta:
     "@turbo/darwin-64":
       optional: true
@@ -12727,7 +12729,7 @@ __metadata:
       optional: true
   bin:
     turbo: bin/turbo
-  checksum: 0bc7cb6c8d5d3bc63f4746bf6c71c03bf857825a9288637a10ba82eed1a166226d388c70b04f0af7879b060fa26f831014863e0a2ebb5c88d56b087d0049f9f4
+  checksum: 12123327eec5b2cd44a907415681cdd9bf0357d3d9c03bffd38390ef47a9c5dc41acf22da2921d8eb9c55108def542933ca69bd87b3eadf097fd00507ab48efb
   languageName: node
   linkType: hard
 
