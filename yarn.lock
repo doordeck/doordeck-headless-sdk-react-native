@@ -11301,15 +11301,15 @@ __metadata:
   linkType: hard
 
 "react-native-gesture-handler@npm:^3.0.2":
-  version: 3.0.2
-  resolution: "react-native-gesture-handler@npm:3.0.2"
+  version: 3.1.0
+  resolution: "react-native-gesture-handler@npm:3.1.0"
   dependencies:
     "@types/react-test-renderer": ^19.1.0
     invariant: ^2.2.4
   peerDependencies:
     react: "*"
     react-native: "*"
-  checksum: 28505ddc9f30ad81952af033f49c66969332ab848421c27eb3161f3245a89d58afbb56acd21c9fcf85b561c09d63b3950c3401a43be19f970bcf990b90b17ad2
+  checksum: 70afdc810ac44ce13f31990411cb6a10183dfdfebb28eee680b7fdd8c2221d9000e711818a3cb1dfa3da99b9b82e730ae685704d1096289f4cb9fd4a4cb69377
   languageName: node
   linkType: hard
 
