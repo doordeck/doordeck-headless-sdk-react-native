@@ -82,7 +82,7 @@
     "react": "19.2.8",
     "react-native": "0.86.0",
     "react-native-builder-bob": "^0.43.0",
-    "release-it": "^20.2.1",
+    "release-it": "^21.0.0",
     "turbo": "^2.10.1",
     "typescript": "^6.0.3"
   },
