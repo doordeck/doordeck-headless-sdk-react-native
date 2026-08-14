@@ -9,6 +9,11 @@ const styles = StyleSheet.create({
     textAlign: 'center',
   },
 
+  deviceList: {
+    alignSelf: 'stretch',
+    flexGrow: 0,
+  },
+
   tileItem: {
     flexDirection: 'row',
     justifyContent: 'space-between',
