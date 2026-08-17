@@ -25,4 +25,4 @@ jobs:
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_PUBLISHING_TOKEN }}
         run: |
-          npm publish --access public
+          npm publish --access public --ignore-scripts
