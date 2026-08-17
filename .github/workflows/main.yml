@@ -6,6 +6,7 @@ on:
 
 permissions:
   contents: write
+  id-token: write
 
 jobs:
   tag-and-publish:
@@ -24,9 +25,16 @@ jobs:
         run: |
           yarn prepare
 
+      # npm authenticates via OIDC trusted publishing (configured on npmjs.com
+      # for this repo + workflow), which needs a recent npm and no auth token.
+      - name: Update npm for trusted publishing
+        run: npm install -g npm@latest
+
       - name: Publish to npm
         env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_PUBLISHING_TOKEN }}
+          # Bypass the .npmrc written by setup-node: its NODE_AUTH_TOKEN
+          # template would shadow the OIDC flow.
+          NPM_CONFIG_USERCONFIG: ${{ runner.temp }}/.npmrc-publish
         run: |
           # npm runs the prepare script on publish even with --ignore-scripts;
           # the package is already built by the previous step, so drop it.
@@ -34,7 +42,7 @@ jobs:
           npm publish --access public --ignore-scripts
 
       # Tags created with GITHUB_TOKEN don't trigger other workflows, so
-      # publishing happens above instead of relying on tag.yml.
+      # publishing happens above instead of relying on a tag-triggered workflow.
       - name: Tag release
         run: |
           git tag "v0.1.${{ github.run_number }}"
