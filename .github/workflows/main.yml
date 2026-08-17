@@ -28,6 +28,9 @@ jobs:
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_PUBLISHING_TOKEN }}
         run: |
+          # npm runs the prepare script on publish even with --ignore-scripts;
+          # the package is already built by the previous step, so drop it.
+          npm pkg delete scripts.prepare
           npm publish --access public --ignore-scripts
 
       # Tags created with GITHUB_TOKEN don't trigger other workflows, so
