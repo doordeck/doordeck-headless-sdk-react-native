@@ -11059,12 +11059,12 @@ __metadata:
   linkType: hard
 
 "react-native-safe-area-context@npm:^5.8.0":
-  version: 5.8.1
-  resolution: "react-native-safe-area-context@npm:5.8.1"
+  version: 5.9.0
+  resolution: "react-native-safe-area-context@npm:5.9.0"
   peerDependencies:
     react: "*"
     react-native: "*"
-  checksum: a2c459427a83251824db16a1d0948b48dc0fc0fc3522632405050f7b7c3b5a4c0573280a364910a79e64581a064953589342d5e8df863c5b9190aef76e587b65
+  checksum: ce1d0a61dc9d127ca7075c3d4c93f8f135864ed7091046e8aa9abae4739bf148712651c929d208b1b1e2866514846056f320896abbda20378310dd5152823c16
   languageName: node
   linkType: hard
 
