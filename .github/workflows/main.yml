@@ -19,7 +19,7 @@ jobs:
         uses: ./.github/actions/react-native-setup
 
       - name: Set package version
-        run: npm version --no-git-tag-version "0.1.${{ github.run_number }}"
+        run: npm version --no-git-tag-version "1.0.${{ github.run_number }}"
 
       - name: Build package
         run: |
@@ -45,5 +45,5 @@ jobs:
       # publishing happens above instead of relying on a tag-triggered workflow.
       - name: Tag release
         run: |
-          git tag "v0.1.${{ github.run_number }}"
-          git push origin "v0.1.${{ github.run_number }}"
+          git tag "v1.0.${{ github.run_number }}"
+          git push origin "v1.0.${{ github.run_number }}"
