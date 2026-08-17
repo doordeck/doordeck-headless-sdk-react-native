@@ -2722,7 +2722,7 @@ __metadata:
     "@evilmartians/lefthook": ^2.1.10
     "@react-native-community/cli": 20.2.0
     "@react-native/eslint-config": 0.86.2
-    "@react-native/jest-preset": 0.86.2
+    "@react-native/jest-preset": 0.87.0
     "@release-it/conventional-changelog": ^12.0.0
     "@types/jest": ^29.5.13
     "@types/react": ^19.2.0
@@ -4064,18 +4064,18 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@react-native/jest-preset@npm:0.86.2":
-  version: 0.86.2
-  resolution: "@react-native/jest-preset@npm:0.86.2"
+"@react-native/jest-preset@npm:0.87.0":
+  version: 0.87.0
+  resolution: "@react-native/jest-preset@npm:0.87.0"
   dependencies:
     "@jest/create-cache-key-function": ^29.7.0
-    "@react-native/js-polyfills": 0.86.2
+    "@react-native/js-polyfills": 0.87.0
     babel-jest: ^29.7.0
     jest-environment-node: ^29.7.0
     regenerator-runtime: ^0.13.2
   peerDependencies:
     react: ^19.2.3
-  checksum: d8aa9c601c2d2bc89dd2492549fbd0085d2929012a6f6a6dc23c353d72f873afa801c4fa175f9602df0e6335b18706342836ac8a57abf870d3e8ce32c9a085ac
+  checksum: d12d1098f0fe0ed3f1f7b772caca3ec38b8f619ad6e7fcb7453821a0fcee0e0368cbaee29191bcd961d3a8e0e96877a9054b696b19e134fe404c793136dbd899
   languageName: node
   linkType: hard
 
@@ -4083,6 +4083,13 @@ __metadata:
   version: 0.86.2
   resolution: "@react-native/js-polyfills@npm:0.86.2"
   checksum: b3f1a3c2f08b40888a8c4680792aece3aefd87cd4c6015a2be7907cdb922089016c3f3b7a01b724d97b48f467327cde07da55a66ca07c99a7811d4bcb1cb8457
+  languageName: node
+  linkType: hard
+
+"@react-native/js-polyfills@npm:0.87.0":
+  version: 0.87.0
+  resolution: "@react-native/js-polyfills@npm:0.87.0"
+  checksum: bc14a20ba288c447267ce8624fa78b053cf6347cf394a5a4ccb2bfcd86d12a26962cc7897d6a2233b6020f0c02055680cff05df5b902f1e8512786bbb34b2a23
   languageName: node
   linkType: hard
 
