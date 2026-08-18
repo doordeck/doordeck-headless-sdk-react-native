@@ -118,7 +118,10 @@ jobs:
         with:
           path: |
             ./**/ios/Pods
-          key: ${{ runner.os }}-cocoapods-${{ matrix.linkage }}-${{ hashFiles('example/ios/Podfile.lock') }}
+          # Podfile.lock is gitignored, so key on the actual pod inputs instead —
+          # a constant key would skip `pod install` forever, reusing Pods built
+          # from an outdated podspec.
+          key: ${{ runner.os }}-cocoapods-${{ matrix.linkage }}-${{ hashFiles('example/ios/Podfile', '*.podspec', 'yarn.lock') }}
           restore-keys: |
             ${{ runner.os }}-cocoapods-${{ matrix.linkage }}-
 

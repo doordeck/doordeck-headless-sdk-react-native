@@ -30,6 +30,12 @@ target 'HeadlessReactNativeSdkExample' do
 
 
   pre_install do |installer|
+    # The @react-native-community/cli npm tarball ships build/bin.js without
+    # the executable bit and yarn 3's node-modules linker extracts it as-is,
+    # so bob's codegen spawn of node_modules/.bin/rnc-cli fails with
+    # "Permission denied" on any fresh install (local and CI).
+    system("cd ../../ && chmod +x node_modules/@react-native-community/cli/build/bin.js 2>/dev/null")
+
     # Fail loudly: codegen first CLEANS ios/generated, so a silent failure here
     # leaves the library without its spec headers and the app build breaks
     # later with a confusing "RNHeadlessReactNativeSdkSpec.h file not found".
