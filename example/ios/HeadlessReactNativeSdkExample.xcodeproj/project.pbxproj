@@ -8,18 +8,18 @@
 
 /* Begin PBXBuildFile section */
 		13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
-		1DFE28943A0E4EB3BE4FD48C /* libPods-HeadlessReactNativeSdkExample.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6AE08D059EBB3619131D7C67 /* libPods-HeadlessReactNativeSdkExample.a */; };
 		761780ED2CA45674006654EE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 761780EC2CA45674006654EE /* AppDelegate.swift */; };
 		81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */; };
 		BD129C3AE5B220781F6539CF /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB81A68108700A75B9A /* PrivacyInfo.xcprivacy */; };
+		F3356791941ACF6397F3BC6C /* libPods-HeadlessReactNativeSdkExample.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A578DD116E7A45423080BA1 /* libPods-HeadlessReactNativeSdkExample.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0A578DD116E7A45423080BA1 /* libPods-HeadlessReactNativeSdkExample.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-HeadlessReactNativeSdkExample.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		13B07F961A680F5B00A75B9A /* HeadlessReactNativeSdkExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HeadlessReactNativeSdkExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		13B07FB51A68108700A75B9A /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = HeadlessReactNativeSdkExample/Images.xcassets; sourceTree = "<group>"; };
 		13B07FB61A68108700A75B9A /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = HeadlessReactNativeSdkExample/Info.plist; sourceTree = "<group>"; };
 		13B07FB81A68108700A75B9A /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = PrivacyInfo.xcprivacy; path = HeadlessReactNativeSdkExample/PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
-		6AE08D059EBB3619131D7C67 /* libPods-HeadlessReactNativeSdkExample.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-HeadlessReactNativeSdkExample.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		761780EC2CA45674006654EE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AppDelegate.swift; path = HeadlessReactNativeSdkExample/AppDelegate.swift; sourceTree = "<group>"; };
 		81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = LaunchScreen.storyboard; path = HeadlessReactNativeSdkExample/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		A3824ECCC31064E014D46CDE /* Pods-HeadlessReactNativeSdkExample.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HeadlessReactNativeSdkExample.debug.xcconfig"; path = "Target Support Files/Pods-HeadlessReactNativeSdkExample/Pods-HeadlessReactNativeSdkExample.debug.xcconfig"; sourceTree = "<group>"; };
@@ -32,7 +32,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1DFE28943A0E4EB3BE4FD48C /* libPods-HeadlessReactNativeSdkExample.a in Frameworks */,
+				F3356791941ACF6397F3BC6C /* libPods-HeadlessReactNativeSdkExample.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -55,7 +55,7 @@
 			isa = PBXGroup;
 			children = (
 				ED297162215061F000B7C4FE /* JavaScriptCore.framework */,
-				6AE08D059EBB3619131D7C67 /* libPods-HeadlessReactNativeSdkExample.a */,
+				0A578DD116E7A45423080BA1 /* libPods-HeadlessReactNativeSdkExample.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -112,7 +112,6 @@
 				00DD1BFF1BD5951E006B06BC /* Bundle React Native code and images */,
 				E5C6AC379643B5B6EB6E5729 /* [CP] Embed Pods Frameworks */,
 				4E24CCD1ED1F5731E35AE6B6 /* [CP] Copy Pods Resources */,
-				EB2847733601DD483CE825D0 /* Embed DoordeckSDK (SPM) Framework */,
 			);
 			buildRules = (
 			);
@@ -240,24 +239,6 @@
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-HeadlessReactNativeSdkExample/Pods-HeadlessReactNativeSdkExample-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		EB2847733601DD483CE825D0 /* Embed DoordeckSDK (SPM) Framework */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-			);
-			name = "Embed DoordeckSDK (SPM) Framework";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "set -e\nFRAMEWORK=\"${BUILT_PRODUCTS_DIR}/DoordeckSDK.framework\"\nDEST=\"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}\"\nif [ -d \"${FRAMEWORK}\" ]; then\n  mkdir -p \"${DEST}\"\n  /usr/bin/rsync -a --delete \"${FRAMEWORK}\" \"${DEST}/\"\n  if [ -n \"${EXPANDED_CODE_SIGN_IDENTITY:-}\" ]; then\n    /usr/bin/codesign --force --sign \"${EXPANDED_CODE_SIGN_IDENTITY}\" --preserve-metadata=identifier,entitlements,flags \"${DEST}/DoordeckSDK.framework\"\n  fi\nelse\n  echo \"warning: DoordeckSDK.framework not found at ${FRAMEWORK}; skipping embed\"\nfi\n";
-		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -377,6 +358,21 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					"${PODS_ROOT}/ReactCommon",
+					"${PODS_ROOT}/ReactCommon/react/nativemodule/core",
+					"${PODS_ROOT}/React-runtimeexecutor",
+					"${PODS_ROOT}/React-runtimeexecutor/platform/ios",
+					"${PODS_ROOT}/ReactCommon-Samples",
+					"${PODS_ROOT}/ReactCommon-Samples/platform/ios",
+					"${PODS_ROOT}/React-Fabric/react/renderer/components/view/platform/cxx",
+					"${PODS_ROOT}/React-NativeModulesApple",
+					"${PODS_ROOT}/React-graphics",
+					"${PODS_ROOT}/React-graphics/react/renderer/graphics/platform/ios",
+					"${PODS_ROOT}/React-featureflags",
+					"${PODS_ROOT}/React-renderercss",
+				);
 				IPHONEOS_DEPLOYMENT_TARGET = 15.1;
 				LD_RUNPATH_SEARCH_PATHS = (
 					/usr/lib/swift,
@@ -457,6 +453,21 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					"${PODS_ROOT}/ReactCommon",
+					"${PODS_ROOT}/ReactCommon/react/nativemodule/core",
+					"${PODS_ROOT}/React-runtimeexecutor",
+					"${PODS_ROOT}/React-runtimeexecutor/platform/ios",
+					"${PODS_ROOT}/ReactCommon-Samples",
+					"${PODS_ROOT}/ReactCommon-Samples/platform/ios",
+					"${PODS_ROOT}/React-Fabric/react/renderer/components/view/platform/cxx",
+					"${PODS_ROOT}/React-NativeModulesApple",
+					"${PODS_ROOT}/React-graphics",
+					"${PODS_ROOT}/React-graphics/react/renderer/graphics/platform/ios",
+					"${PODS_ROOT}/React-featureflags",
+					"${PODS_ROOT}/React-renderercss",
+				);
 				IPHONEOS_DEPLOYMENT_TARGET = 15.1;
 				LD_RUNPATH_SEARCH_PATHS = (
 					/usr/lib/swift,

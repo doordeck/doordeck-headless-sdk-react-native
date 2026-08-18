@@ -1,5 +1,13 @@
 #import "HeadlessReactNativeSdk.h"
+
+// The Swift-generated interop header lives at different paths depending on how
+// the pod is built: quoted for static libraries (the default), framework-style
+// under `use_frameworks!`.
+#if __has_include("HeadlessReactNativeSdk-Swift.h")
 #import "HeadlessReactNativeSdk-Swift.h"
+#else
+#import <HeadlessReactNativeSdk/HeadlessReactNativeSdk-Swift.h>
+#endif
 
 @implementation HeadlessReactNativeSdk {
   HeadlessReactNativeSdkImpl *moduleSdk;

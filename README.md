@@ -16,6 +16,15 @@ or using yarn:
 yarn add @doordeck/headless-react-native-sdk
 ```
 
+### iOS
+After installing the package, install the pods:
+
+```sh
+cd ios && pod install
+```
+
+The native Doordeck SDK is pulled in automatically as a CocoaPods dependency (`DoordeckSDK`, a dynamic xcframework) and embedded into your app by CocoaPods — no extra Podfile configuration or build phases are required. The SDK works with the default static-library linkage as well as with `use_frameworks!` (both `:static` and `:dynamic`).
+
 ## Usage
 
 ### Importing the SDK
