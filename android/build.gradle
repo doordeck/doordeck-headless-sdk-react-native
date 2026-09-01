@@ -21,7 +21,15 @@ def isNewArchitectureEnabled() {
 }
 
 apply plugin: "com.android.library"
-apply plugin: "kotlin-android"
+
+// AGP 9's built-in Kotlin support registers the `kotlin` extension itself, and
+// applying kotlin-android on top of it fails with a duplicate-extension error.
+// Consumers may have that support on or off (android.builtInKotlin), and the
+// standalone build here still pins AGP 8, so test for the extension rather than
+// the AGP version.
+if (project.extensions.findByName("kotlin") == null) {
+  apply plugin: "kotlin-android"
+}
 
 if (isNewArchitectureEnabled()) {
   apply plugin: "com.facebook.react"

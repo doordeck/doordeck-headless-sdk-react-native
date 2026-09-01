@@ -1,7 +1,5 @@
 apply plugin: "com.android.application"
-// AGP 9 (required by react-native 0.87) has built-in Kotlin support and registers
-// the `kotlin` extension itself, so applying org.jetbrains.kotlin.android here
-// now fails with a duplicate-extension error.
+apply plugin: "org.jetbrains.kotlin.android"
 apply plugin: "com.facebook.react"
 
 /**
