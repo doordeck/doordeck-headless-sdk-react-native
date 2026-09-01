@@ -14,6 +14,30 @@ updates:
     reviewers:
       - "team:mobile-developers"
     groups:
+      # The React Native monorepo releases every package on one version train
+      # (react-native 0.87.0 <-> @react-native/* 0.87.0). Bumping any one of
+      # them on its own leaves the workspace on mismatched versions and the
+      # build fails, so they have to land together.
+      react-native:
+        patterns:
+          - "react-native"
+          - "@react-native/*"
+          - "@react-native-community/*"
+          - "react"
+          - "react-test-renderer"
+          - "@types/react"
+        update-types: ["major", "minor", "patch"]
+
+      # Third-party native modules used by the example app. They peer-depend on
+      # react-native and on each other (reanimated <-> worklets), so keep them
+      # in step. Majors are left out - those tend to need code changes and
+      # deserve their own PR.
+      react-native-ecosystem:
+        patterns:
+          - "react-native-*"
+          - "@react-navigation/*"
+        update-types: ["minor", "patch"]
+
       npm-patch:
         patterns: ["*"]
         update-types: ["patch"]
