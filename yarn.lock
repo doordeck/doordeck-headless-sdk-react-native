@@ -11022,15 +11022,15 @@ __metadata:
   linkType: hard
 
 "react-native-gesture-handler@npm:^3.0.2":
-  version: 3.1.0
-  resolution: "react-native-gesture-handler@npm:3.1.0"
+  version: 3.2.1
+  resolution: "react-native-gesture-handler@npm:3.2.1"
   dependencies:
     "@types/react-test-renderer": ^19.1.0
     invariant: ^2.2.4
   peerDependencies:
     react: "*"
     react-native: "*"
-  checksum: 70afdc810ac44ce13f31990411cb6a10183dfdfebb28eee680b7fdd8c2221d9000e711818a3cb1dfa3da99b9b82e730ae685704d1096289f4cb9fd4a4cb69377
+  checksum: dfe544738471ca11322ac44815252d57ea5d71eabd4cc53dccadddc4d4ad5c017919363a3edcd965a8df8d6a20cf6490965be6881a85e328a4525ee6a7c46c04
   languageName: node
   linkType: hard
 
@@ -11059,12 +11059,12 @@ __metadata:
   linkType: hard
 
 "react-native-safe-area-context@npm:^5.8.0":
-  version: 5.8.1
-  resolution: "react-native-safe-area-context@npm:5.8.1"
+  version: 5.9.1
+  resolution: "react-native-safe-area-context@npm:5.9.1"
   peerDependencies:
     react: "*"
     react-native: "*"
-  checksum: a2c459427a83251824db16a1d0948b48dc0fc0fc3522632405050f7b7c3b5a4c0573280a364910a79e64581a064953589342d5e8df863c5b9190aef76e587b65
+  checksum: ef708ab0b4480750552aa1947910bdfa26fd8e2864146342317e7713c00960c5da1d8dab72307f1e9da7dec3f7aff5c97d2eda349a1120dd3d14aa935331ae66
   languageName: node
   linkType: hard
 
