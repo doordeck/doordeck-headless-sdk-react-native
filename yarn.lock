@@ -4209,29 +4209,29 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@react-navigation/elements@npm:^2.9.39":
-  version: 2.9.39
-  resolution: "@react-navigation/elements@npm:2.9.39"
+"@react-navigation/elements@npm:^2.9.40":
+  version: 2.9.40
+  resolution: "@react-navigation/elements@npm:2.9.40"
   dependencies:
     color: ^4.2.3
     use-latest-callback: ^0.2.4
     use-sync-external-store: ^1.5.0
   peerDependencies:
     "@react-native-masked-view/masked-view": ">= 0.2.0"
-    "@react-navigation/native": ^7.3.17
+    "@react-navigation/native": ^7.3.18
     react: ">= 18.2.0"
     react-native: "*"
     react-native-safe-area-context: ">= 4.0.0"
   peerDependenciesMeta:
     "@react-native-masked-view/masked-view":
       optional: true
-  checksum: 6ad0af2b6205e1477053616ed16e913fa2d9e237a449dc644eeceae5625bed2546abbd4d5d646e7a93b3c8ddba6a786adea31575c024e614b6c15b6ad200c103
+  checksum: aac2aa5f7e734ad11c6e5ab31e4f3da67095df44ffbb3a92b94d80d7c8204afb8dc3e93a7e1ea27c29f2c5199d5634fe0b97b73542514e058c52ece39ce1701f
   languageName: node
   linkType: hard
 
 "@react-navigation/native@npm:^7.3.7":
-  version: 7.3.17
-  resolution: "@react-navigation/native@npm:7.3.17"
+  version: 7.3.18
+  resolution: "@react-navigation/native@npm:7.3.18"
   dependencies:
     "@react-navigation/core": ^7.21.13
     escape-string-regexp: ^4.0.0
@@ -4242,7 +4242,7 @@ __metadata:
   peerDependencies:
     react: ">= 18.2.0"
     react-native: "*"
-  checksum: 64faa0448b08d37c50b9479ae021497dc5de529bd4d76b85c32054421ca983168d29909dcc3430b682b4855187ef52a8c271358cc49985f8e525ec38cbf2e197
+  checksum: 3dcea5cebbe5d1b74704a76f047ba20d2561531b5d40b1b9d9cb31695f9f8fef23ca70c377413a3624be08d16360d3b307fe39093344de5fbd04110d0e95e1f0
   languageName: node
   linkType: hard
 
@@ -4256,20 +4256,20 @@ __metadata:
   linkType: hard
 
 "@react-navigation/stack@npm:^7.10.10":
-  version: 7.10.23
-  resolution: "@react-navigation/stack@npm:7.10.23"
+  version: 7.10.24
+  resolution: "@react-navigation/stack@npm:7.10.24"
   dependencies:
-    "@react-navigation/elements": ^2.9.39
+    "@react-navigation/elements": ^2.9.40
     color: ^4.2.3
     use-latest-callback: ^0.2.4
   peerDependencies:
-    "@react-navigation/native": ^7.3.17
+    "@react-navigation/native": ^7.3.18
     react: ">= 18.2.0"
     react-native: "*"
     react-native-gesture-handler: ">= 2.0.0"
     react-native-safe-area-context: ">= 4.0.0"
     react-native-screens: ">= 4.0.0"
-  checksum: 2b7eafbb76531d4fa430d6ace75b5cfa2cb7cda4065a905d42ef68f4017043c25de22303c5e85f9a3401421dad50b438c4583843ad3d6bde0314c3115ea9ca57
+  checksum: f678d3d2780816fe097f51ed2810a93850c344674807dd303a819d85d39e09c940e223d33b112eb4513430b1ba82dcf872a246ed349ebfef87f5dc00440d408c
   languageName: node
   linkType: hard
 
