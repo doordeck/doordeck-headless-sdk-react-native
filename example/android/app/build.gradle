@@ -1,5 +1,7 @@
 apply plugin: "com.android.application"
-apply plugin: "org.jetbrains.kotlin.android"
+// AGP 9 (required by react-native 0.87) has built-in Kotlin support and registers
+// the `kotlin` extension itself, so applying org.jetbrains.kotlin.android here
+// now fails with a duplicate-extension error.
 apply plugin: "com.facebook.react"
 
 /**
@@ -111,7 +113,7 @@ android {
             // see https://reactnative.dev/docs/signed-apk-android.
             signingConfig signingConfigs.debug
             minifyEnabled enableProguardInReleaseBuilds
-            proguardFiles getDefaultProguardFile("proguard-android.txt"), "proguard-rules.pro"
+            proguardFiles getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro"
         }
     }
 }
