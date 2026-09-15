@@ -42,6 +42,17 @@ updates:
           - "@react-navigation/*"
         update-types: ["minor", "patch"]
 
+      # Babel ships every @babel/* package from one monorepo on a single
+      # version train (@babel/core 8.0.5 <-> @babel/preset-env 8.0.5), and the
+      # presets and runtime peer-depend on a matching @babel/core. Bumping them
+      # separately leaves the example app on mismatched versions, so they land
+      # together. @react-native/babel-preset follows the React Native train
+      # instead and is caught by the react-native group above.
+      babel:
+        patterns:
+          - "@babel/*"
+        update-types: ["major", "minor", "patch"]
+
       npm-patch:
         patterns: ["*"]
         update-types: ["patch"]
