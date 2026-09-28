@@ -3313,10 +3313,10 @@ __metadata:
     react-native: 0.87.1
     react-native-builder-bob: ^0.43.0
     react-native-gesture-handler: ^3.0.2
-    react-native-reanimated: ^4.6.0
+    react-native-reanimated: ^4.7.0
     react-native-safe-area-context: ^5.8.0
     react-native-screens: ^4.25.2
-    react-native-worklets: ^0.12.1
+    react-native-worklets: ^0.13.0
   languageName: unknown
   linkType: soft
 
@@ -11734,7 +11734,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"react-native-reanimated@npm:^4.6.0":
+"react-native-reanimated@npm:^4.7.0":
   version: 4.7.0
   resolution: "react-native-reanimated@npm:4.7.0"
   dependencies:
@@ -11771,9 +11771,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"react-native-worklets@npm:^0.12.1":
-  version: 0.12.1
-  resolution: "react-native-worklets@npm:0.12.1"
+"react-native-worklets@npm:^0.13.0":
+  version: 0.13.0
+  resolution: "react-native-worklets@npm:0.13.0"
   dependencies:
     "@babel/generator": ^7.27.1
     "@babel/plugin-transform-arrow-functions": ^7.27.1
@@ -11787,14 +11787,16 @@ __metadata:
     "@babel/preset-typescript": ^7.28.5
     "@babel/traverse": ^7.27.1
     "@babel/types": ^7.27.1
+    "@jridgewell/remapping": ^2.3.5
     convert-source-map: ^2.0.0
     semver: ^7.7.4
+    whatwg-fetch: ^3.6.20
   peerDependencies:
     "@babel/core": "*"
     "@react-native/metro-config": "*"
     react: "*"
-    react-native: 0.83 - 0.87
-  checksum: 0bd4daf5337f13870eb40efbce4fa23981428de267f03d04a382aed1fb9376da4731371a61bc9727f4a9e72ffa865e797f6930daba5c402e7380e443b5d2ba00
+    react-native: 0.86 - 0.88
+  checksum: 08eeae50e81336089c205ccfbff2f3ad5107a3516d6896944fbb2cddc1fbf234707a04f6f0ca2d27c6ee68dd8950be9ee77d4b20129b9f0d734a8af66e16199d
   languageName: node
   linkType: hard
 
@@ -13443,7 +13445,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"whatwg-fetch@npm:^3.0.0":
+"whatwg-fetch@npm:^3.0.0, whatwg-fetch@npm:^3.6.20":
   version: 3.6.20
   resolution: "whatwg-fetch@npm:3.6.20"
   checksum: c58851ea2c4efe5c2235f13450f426824cf0253c1d45da28f45900290ae602a20aff2ab43346f16ec58917d5562e159cd691efa368354b2e82918c2146a519c5
