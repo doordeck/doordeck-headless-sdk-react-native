@@ -11845,25 +11845,25 @@ __metadata:
   linkType: hard
 
 "react-native-safe-area-context@npm:^5.8.0":
-  version: 5.10.1
-  resolution: "react-native-safe-area-context@npm:5.10.1"
+  version: 5.11.0
+  resolution: "react-native-safe-area-context@npm:5.11.0"
   peerDependencies:
     react: "*"
     react-native: "*"
-  checksum: 8e7869418995581c58ac27bb6eb89230863b01b77f90a2545fd3e57f4cb244173e1b87f0b46971624e0eccc1ccd7ca4d6982ffead78c8e5a0ce378ae1d497f22
+  checksum: 743ae6375182bc86d013b4fcfe0b5db465a93c5b789e7523a69fb57908806ad6ac81ca1c1afac4673818599ae5d77307fa2f462e27ad3f49d65cb97ced92630f
   languageName: node
   linkType: hard
 
 "react-native-screens@npm:^4.25.2":
-  version: 4.30.0
-  resolution: "react-native-screens@npm:4.30.0"
+  version: 4.30.1
+  resolution: "react-native-screens@npm:4.30.1"
   dependencies:
     react-freeze: ^1.0.0
     warn-once: ^0.1.0
   peerDependencies:
     react: "*"
     react-native: "*"
-  checksum: 9159f5582b492a2f39b8dfd15552eb7206c4ff93f988d941a681546093de7103b71f848d776eb045f7906832bd532b9b0ab66093cfab2fe920f34a1204cce501
+  checksum: 04e1ee936cb3f50074ada1498bebd5ccbaa6654e3a28fa1d5dde9f8458381343d8c1014d17e85fda8a3d36a96ecfae72872a583f84f7c23ad0eb2c5d2654cdc2
   languageName: node
   linkType: hard
 
